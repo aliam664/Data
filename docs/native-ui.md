@@ -47,9 +47,19 @@ WPF Button Click
 
 هیچ متن Catalog به‌عنوان Script یا Command اجرا نمی‌شود. Event Handlerها از قبل در کد تعریف شده‌اند و `Invoke-Expression` وجود ندارد.
 
+## سیستم طراحی
+
+- تم Dark Racing با Accent لیمویی، Cyan برای انتقال داده و Green برای وضعیت سالم
+- Hero گاراژ، Sidebar گرادیانی، کارت‌های آماری با رنگ وضعیت و Cardهای تصویری کاتالوگ
+- Template اختصاصی برای Button، TextBox، ComboBox، ProgressBar، DataGrid و Empty Stateها
+- Hover/Focus/Pressed State روشن برای کار با ماوس و صفحه‌کلید
+- `fa-IR`، Layout Rounding و Text Formatting برای نمایش واضح فارسی
+- فونت داخلی `Segoe UI` ویندوز؛ بدون دانلود فونت، وابستگی شبکه یا ریسک Supply Chain
+- پنجره قابل Resize/Maximize با Title Bar اختصاصی و دیالوگ‌های دارای Shadow
+
 ## صفحه‌ها
 
-1. Dashboard: آمار کاتالوگ، نصب، دانلود و سلامت Steam/بازی
+1. Dashboard: Hero، آمار کاتالوگ، نصب، دانلود و سلامت Steam/بازی
 2. Catalog: کارت مود، جست‌وجو، فیلتر و مرتب‌سازی
 3. Details: توضیح، وابستگی، CSP، مقصد و دکمه دانلود/نصب
 4. Queue: Progress، Pause، Resume، Cancel، Retry و Install

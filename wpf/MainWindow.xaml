@@ -7,23 +7,52 @@
         Language="fa-IR" UseLayoutRounding="True" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display"
         Background="#070A0E" Foreground="#F3F6F8" FontFamily="Segoe UI">
   <Window.Resources>
-    <SolidColorBrush x:Key="BgBrush" Color="#070A0E"/>
-    <SolidColorBrush x:Key="PanelBrush" Color="#0C1118"/>
-    <SolidColorBrush x:Key="Panel2Brush" Color="#111821"/>
-    <SolidColorBrush x:Key="Panel3Brush" Color="#18212B"/>
-    <SolidColorBrush x:Key="LineBrush" Color="#26313D"/>
-    <SolidColorBrush x:Key="TextBrush" Color="#F3F6F8"/>
-    <SolidColorBrush x:Key="MutedBrush" Color="#8B98A7"/>
+    <!-- Design tokens -->
+    <SolidColorBrush x:Key="BgBrush" Color="#070A0F"/>
+    <SolidColorBrush x:Key="PanelBrush" Color="#0D131B"/>
+    <SolidColorBrush x:Key="Panel2Brush" Color="#121A24"/>
+    <SolidColorBrush x:Key="Panel3Brush" Color="#192430"/>
+    <SolidColorBrush x:Key="LineBrush" Color="#263442"/>
+    <SolidColorBrush x:Key="LineBrightBrush" Color="#3B4C5C"/>
+    <SolidColorBrush x:Key="TextBrush" Color="#F4F7F9"/>
+    <SolidColorBrush x:Key="MutedBrush" Color="#8D9AA8"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#DFFF32"/>
-    <SolidColorBrush x:Key="AccentSoftBrush" Color="#1EDFFF32"/>
-    <SolidColorBrush x:Key="DangerBrush" Color="#FF5864"/>
-    <SolidColorBrush x:Key="SuccessBrush" Color="#50E395"/>
-    <SolidColorBrush x:Key="WarningBrush" Color="#FF9F43"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="#ECFF76"/>
+    <SolidColorBrush x:Key="AccentSoftBrush" Color="#20DFFF32"/>
+    <SolidColorBrush x:Key="CyanBrush" Color="#48D7FF"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="#FF5D68"/>
+    <SolidColorBrush x:Key="SuccessBrush" Color="#51E49A"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="#FFA34B"/>
+    <LinearGradientBrush x:Key="HeroBrush" StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="#18242E" Offset="0"/>
+      <GradientStop Color="#101820" Offset="0.5"/>
+      <GradientStop Color="#16200D" Offset="1"/>
+    </LinearGradientBrush>
 
+    <!-- Typography -->
     <Style TargetType="TextBlock">
       <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
       <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
     </Style>
+    <Style x:Key="PageEyebrow" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+      <Setter Property="FontSize" Value="10"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Margin" Value="0,0,0,5"/>
+    </Style>
+    <Style x:Key="PageTitle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="29"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+    </Style>
+    <Style x:Key="PageDescription" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="{StaticResource MutedBrush}"/>
+      <Setter Property="FontSize" Value="11"/>
+      <Setter Property="Margin" Value="0,6,0,0"/>
+    </Style>
+
+    <!-- Buttons -->
     <Style TargetType="Button" x:Key="BaseButton">
       <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
       <Setter Property="Background" Value="{StaticResource Panel2Brush}"/>
@@ -31,52 +60,217 @@
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="16,9"/>
       <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="Button">
-            <Border x:Name="Border" CornerRadius="9" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
-              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border x:Name="ButtonBorder" CornerRadius="9" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
             </Border>
             <ControlTemplate.Triggers>
-              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Border" Property="Background" Value="#1B2631"/><Setter TargetName="Border" Property="BorderBrush" Value="#465566"/></Trigger>
-              <Trigger Property="IsPressed" Value="True"><Setter TargetName="Border" Property="Opacity" Value="0.78"/></Trigger>
-              <Trigger Property="IsEnabled" Value="False"><Setter TargetName="Border" Property="Opacity" Value="0.38"/></Trigger>
+              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonBorder" Property="Background" Value="#1A2530"/><Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource LineBrightBrush}"/></Trigger>
+              <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource AccentBrush}"/></Trigger>
+              <Trigger Property="IsPressed" Value="True"><Setter TargetName="ButtonBorder" Property="Opacity" Value="0.72"/></Trigger>
+              <Trigger Property="IsEnabled" Value="False"><Setter TargetName="ButtonBorder" Property="Opacity" Value="0.35"/></Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
         </Setter.Value>
       </Setter>
     </Style>
-    <Style TargetType="Button" x:Key="PrimaryButton" BasedOn="{StaticResource BaseButton}">
-      <Setter Property="Foreground" Value="#090D0F"/><Setter Property="Background" Value="{StaticResource AccentBrush}"/><Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/><Setter Property="FontWeight" Value="SemiBold"/>
+    <Style TargetType="Button" x:Key="PrimaryButton">
+      <Setter Property="Foreground" Value="#090D0F"/>
+      <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="17,9"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="PrimaryBorder" CornerRadius="9" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+              <Border.Effect><DropShadowEffect Color="#A7C800" BlurRadius="16" ShadowDepth="0" Opacity="0.16"/></Border.Effect>
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="PrimaryBorder" Property="Background" Value="{StaticResource AccentHoverBrush}"/><Setter TargetName="PrimaryBorder" Property="BorderBrush" Value="{StaticResource AccentHoverBrush}"/></Trigger>
+              <Trigger Property="IsPressed" Value="True"><Setter TargetName="PrimaryBorder" Property="Opacity" Value="0.74"/></Trigger>
+              <Trigger Property="IsEnabled" Value="False"><Setter TargetName="PrimaryBorder" Property="Opacity" Value="0.35"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
     </Style>
     <Style TargetType="Button" x:Key="GhostButton" BasedOn="{StaticResource BaseButton}">
-      <Setter Property="Background" Value="Transparent"/><Setter Property="BorderBrush" Value="Transparent"/><Setter Property="Foreground" Value="{StaticResource MutedBrush}"/>
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderBrush" Value="Transparent"/>
+      <Setter Property="Foreground" Value="{StaticResource MutedBrush}"/>
     </Style>
     <Style TargetType="Button" x:Key="NavButton" BasedOn="{StaticResource GhostButton}">
-      <Setter Property="HorizontalContentAlignment" Value="Right"/><Setter Property="Height" Value="49"/><Setter Property="Margin" Value="0,3"/><Setter Property="Padding" Value="17,0"/><Setter Property="FontSize" Value="13"/>
+      <Setter Property="HorizontalContentAlignment" Value="Right"/>
+      <Setter Property="Height" Value="50"/>
+      <Setter Property="Margin" Value="0,3"/>
+      <Setter Property="Padding" Value="17,0"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
+
+    <!-- Text entry -->
     <Style TargetType="TextBox">
-      <Setter Property="Foreground" Value="{StaticResource TextBrush}"/><Setter Property="Background" Value="#090E14"/><Setter Property="BorderBrush" Value="{StaticResource LineBrush}"/><Setter Property="BorderThickness" Value="1"/><Setter Property="Padding" Value="12,8"/><Setter Property="CaretBrush" Value="{StaticResource AccentBrush}"/>
+      <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+      <Setter Property="Background" Value="#090E14"/>
+      <Setter Property="BorderBrush" Value="{StaticResource LineBrush}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="12,8"/>
+      <Setter Property="CaretBrush" Value="{StaticResource AccentBrush}"/>
+      <Setter Property="SelectionBrush" Value="#70DFFF32"/>
+      <Setter Property="MinHeight" Value="39"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="TextBox">
+            <Border x:Name="TextBorder" CornerRadius="9" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+              <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="TextBorder" Property="BorderBrush" Value="{StaticResource LineBrightBrush}"/></Trigger>
+              <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="TextBorder" Property="BorderBrush" Value="{StaticResource AccentBrush}"/><Setter TargetName="TextBorder" Property="Background" Value="#0C131A"/></Trigger>
+              <Trigger Property="IsEnabled" Value="False"><Setter TargetName="TextBorder" Property="Opacity" Value="0.4"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Native dark combo boxes -->
+    <Style TargetType="ComboBoxItem">
+      <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+      <Setter Property="Background" Value="#0C131A"/>
+      <Setter Property="Padding" Value="11,8"/>
+      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ComboBoxItem">
+            <Border x:Name="ItemBorder" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" CornerRadius="6" Margin="3,1">
+              <ContentPresenter/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsHighlighted" Value="True"><Setter TargetName="ItemBorder" Property="Background" Value="#1C2933"/><Setter Property="Foreground" Value="{StaticResource AccentBrush}"/></Trigger>
+              <Trigger Property="IsSelected" Value="True"><Setter TargetName="ItemBorder" Property="Background" Value="#26361A"/><Setter Property="Foreground" Value="{StaticResource AccentBrush}"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
     </Style>
     <Style TargetType="ComboBox">
-      <Setter Property="Foreground" Value="#111820"/><Setter Property="Background" Value="#E9EDF0"/><Setter Property="BorderBrush" Value="{StaticResource LineBrush}"/><Setter Property="Padding" Value="9,6"/><Setter Property="MinHeight" Value="38"/>
+      <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+      <Setter Property="Background" Value="#090E14"/>
+      <Setter Property="BorderBrush" Value="{StaticResource LineBrush}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="11,6"/>
+      <Setter Property="MinHeight" Value="39"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ComboBox">
+            <Grid>
+              <ToggleButton x:Name="DropDownToggle" Focusable="False" ClickMode="Press" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Background="Transparent" BorderThickness="0">
+                <ToggleButton.Template>
+                  <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="ComboBorder" CornerRadius="9" Background="{Binding Background, RelativeSource={RelativeSource AncestorType=ComboBox}}" BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=ComboBox}}" BorderThickness="1">
+                      <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/></Grid.ColumnDefinitions><Path Grid.Column="1" Width="8" Height="5" Stretch="Fill" Fill="{StaticResource MutedBrush}" Data="M 0 0 L 4 4 L 8 0 Z" HorizontalAlignment="Center" VerticalAlignment="Center"/></Grid>
+                    </Border>
+                    <ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ComboBorder" Property="BorderBrush" Value="{StaticResource LineBrightBrush}"/></Trigger><Trigger Property="IsChecked" Value="True"><Setter TargetName="ComboBorder" Property="BorderBrush" Value="{StaticResource AccentBrush}"/></Trigger></ControlTemplate.Triggers>
+                  </ControlTemplate>
+                </ToggleButton.Template>
+              </ToggleButton>
+              <ContentPresenter Margin="12,3,38,3" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Right" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"/>
+              <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                <Border MinWidth="180" MaxHeight="320" Margin="0,5,0,0" Background="#0C131A" BorderBrush="{StaticResource LineBrightBrush}" BorderThickness="1" CornerRadius="9" Padding="4">
+                  <Border.Effect><DropShadowEffect Color="#000000" BlurRadius="24" ShadowDepth="8" Opacity="0.55"/></Border.Effect>
+                  <ScrollViewer VerticalScrollBarVisibility="Auto"><ItemsPresenter/></ScrollViewer>
+                </Border>
+              </Popup>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="HasItems" Value="False"><Setter TargetName="PART_Popup" Property="MinHeight" Value="38"/></Trigger>
+              <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.4"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
     </Style>
-    <Style TargetType="CheckBox"><Setter Property="Foreground" Value="{StaticResource MutedBrush}"/><Setter Property="VerticalContentAlignment" Value="Center"/></Style>
+
+    <Style TargetType="CheckBox">
+      <Setter Property="Foreground" Value="{StaticResource MutedBrush}"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Padding" Value="4"/>
+    </Style>
+    <Style TargetType="ToolTip">
+      <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+      <Setter Property="Background" Value="#F0121921"/>
+      <Setter Property="BorderBrush" Value="{StaticResource LineBrightBrush}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="9,6"/>
+    </Style>
+
+    <!-- Collections and progress -->
     <Style TargetType="ListBox">
-      <Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/><Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
     </Style>
     <Style TargetType="ListBoxItem">
-      <Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="0"/><Setter Property="Margin" Value="0"/>
+      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Margin" Value="0"/>
       <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ListBoxItem"><ContentPresenter/></ControlTemplate></Setter.Value></Setter>
     </Style>
-    <Style TargetType="ProgressBar">
-      <Setter Property="Height" Value="7"/><Setter Property="Foreground" Value="{StaticResource AccentBrush}"/><Setter Property="Background" Value="#25303A"/><Setter Property="BorderThickness" Value="0"/>
+    <Style x:Key="CatalogListStyle" TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+      <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ListBox"><Grid><ScrollViewer x:Name="PART_ScrollViewer" Focusable="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><ItemsPresenter/></ScrollViewer><Border x:Name="EmptyState" Background="#090F15" BorderBrush="#263442" BorderThickness="1" CornerRadius="14" Padding="35" Margin="8"><StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"><Border Width="58" Height="58" CornerRadius="17" Background="#1EDFFF32"><TextBlock Text="⌕" Foreground="{StaticResource AccentBrush}" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="مودی با این فیلتر پیدا نشد" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,15,0,0"/><TextBlock Text="عبارت جست‌وجو یا فیلترها را تغییر دهید" Foreground="{StaticResource MutedBrush}" FontSize="9" HorizontalAlignment="Center" Margin="0,7,0,0"/></StackPanel></Border></Grid><ControlTemplate.Triggers><Trigger Property="HasItems" Value="True"><Setter TargetName="EmptyState" Property="Visibility" Value="Collapsed"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
     </Style>
+    <Style x:Key="QueueListStyle" TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+      <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ListBox"><Grid><ScrollViewer x:Name="PART_ScrollViewer" Focusable="False" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><ItemsPresenter/></ScrollViewer><Border x:Name="EmptyState" Background="#090F15" BorderBrush="#263442" BorderThickness="1" CornerRadius="14" Padding="35"><StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"><Border Width="58" Height="58" CornerRadius="17" Background="#2048D7FF"><TextBlock Text="⇣" Foreground="{StaticResource CyanBrush}" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="صف دانلود خالی است" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,15,0,0"/><TextBlock Text="از کاتالوگ یک مود را برای دانلود انتخاب کنید" Foreground="{StaticResource MutedBrush}" FontSize="9" HorizontalAlignment="Center" Margin="0,7,0,0"/></StackPanel></Border></Grid><ControlTemplate.Triggers><Trigger Property="HasItems" Value="True"><Setter TargetName="EmptyState" Property="Visibility" Value="Collapsed"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+    </Style>
+    <Style TargetType="ProgressBar">
+      <Setter Property="Height" Value="7"/>
+      <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+      <Setter Property="Background" Value="#25303A"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ProgressBar">
+            <Grid x:Name="ProgressRoot"><Border x:Name="PART_Track" Background="{TemplateBinding Background}" CornerRadius="4"/><Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="{TemplateBinding Foreground}" CornerRadius="4"><Border.Effect><DropShadowEffect Color="#DFFF32" BlurRadius="8" ShadowDepth="0" Opacity="0.28"/></Border.Effect></Border></Grid>
+            <ControlTemplate.Triggers><Trigger Property="IsIndeterminate" Value="True"><Setter TargetName="PART_Indicator" Property="HorizontalAlignment" Value="Stretch"/><Setter TargetName="PART_Indicator" Property="Opacity" Value="0.8"/></Trigger></ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Data grid -->
+    <Style TargetType="DataGridColumnHeader">
+      <Setter Property="Background" Value="#111A23"/><Setter Property="Foreground" Value="{StaticResource MutedBrush}"/><Setter Property="BorderBrush" Value="{StaticResource LineBrush}"/><Setter Property="BorderThickness" Value="0,0,0,1"/><Setter Property="Padding" Value="14,11"/><Setter Property="FontSize" Value="10"/>
+    </Style>
+    <Style TargetType="DataGridRow">
+      <Setter Property="Background" Value="#0D131B"/><Setter Property="Foreground" Value="{StaticResource TextBrush}"/><Setter Property="BorderBrush" Value="#1E2A35"/><Setter Property="BorderThickness" Value="0,0,0,1"/><Setter Property="MinHeight" Value="48"/>
+      <Style.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter Property="Background" Value="#131E28"/></Trigger><Trigger Property="IsSelected" Value="True"><Setter Property="Background" Value="#1B2A20"/><Setter Property="Foreground" Value="{StaticResource AccentBrush}"/></Trigger></Style.Triggers>
+    </Style>
+    <Style TargetType="DataGridCell"><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="12,8"/><Setter Property="VerticalContentAlignment" Value="Center"/><Setter Property="FocusVisualStyle" Value="{x:Null}"/></Style>
+
+    <!-- Card surfaces -->
     <Style x:Key="StatCard" TargetType="Border">
-      <Setter Property="Background" Value="#0F161E"/><Setter Property="BorderBrush" Value="#202B36"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="14"/><Setter Property="Padding" Value="20"/><Setter Property="Margin" Value="6"/>
+      <Setter Property="Background" Value="#101821"/><Setter Property="BorderBrush" Value="#23303C"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="14"/><Setter Property="Padding" Value="20"/><Setter Property="Margin" Value="6"/>
+      <Setter Property="Effect"><Setter.Value><DropShadowEffect Color="#000000" BlurRadius="20" ShadowDepth="5" Opacity="0.20"/></Setter.Value></Setter>
     </Style>
     <Style x:Key="PanelCard" TargetType="Border">
-      <Setter Property="Background" Value="{StaticResource PanelBrush}"/><Setter Property="BorderBrush" Value="#202B36"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="14"/>
+      <Setter Property="Background" Value="{StaticResource PanelBrush}"/><Setter Property="BorderBrush" Value="#222E3A"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="14"/>
+      <Setter Property="Effect"><Setter.Value><DropShadowEffect Color="#000000" BlurRadius="22" ShadowDepth="6" Opacity="0.18"/></Setter.Value></Setter>
+    </Style>
+    <Style x:Key="CatalogCard" TargetType="Border" BasedOn="{StaticResource PanelCard}">
+      <Setter Property="Width" Value="292"/><Setter Property="Height" Value="292"/><Setter Property="Margin" Value="8"/><Setter Property="Background" Value="#0D141C"/><Setter Property="BorderBrush" Value="#24313D"/><Setter Property="CornerRadius" Value="15"/>
+      <Style.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter Property="BorderBrush" Value="#70DFFF32"/><Setter Property="Background" Value="#101923"/><Setter Property="Effect"><Setter.Value><DropShadowEffect Color="#A6C800" BlurRadius="22" ShadowDepth="4" Opacity="0.16"/></Setter.Value></Setter></Trigger></Style.Triggers>
     </Style>
   </Window.Resources>
 
@@ -84,26 +278,30 @@
     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="242"/></Grid.ColumnDefinitions>
 
     <!-- Native sidebar -->
-    <Border Grid.Column="1" Background="#090D12" BorderBrush="#202A34" BorderThickness="1,0,0,0" FlowDirection="RightToLeft">
-      <Grid Margin="18,26,18,18">
+    <Border Grid.Column="1" BorderBrush="#273440" BorderThickness="1,0,0,0" FlowDirection="RightToLeft">
+      <Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#0C1219" Offset="0"/><GradientStop Color="#080C11" Offset="0.62"/><GradientStop Color="#0A100C" Offset="1"/></LinearGradientBrush></Border.Background>
+      <Grid Margin="18,24,18,18">
         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="8,0,8,36" FlowDirection="LeftToRight">
-          <Border Width="42" Height="42" CornerRadius="11" Background="#1EDFFF32" BorderBrush="#55DFFF32" BorderThickness="1">
-            <TextBlock Text="U" Foreground="{StaticResource AccentBrush}" FontWeight="Black" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Margin="8,0,8,31" FlowDirection="LeftToRight">
+          <Border Width="48" Height="48" CornerRadius="13" Background="#22DFFF32" BorderBrush="#68DFFF32" BorderThickness="1">
+            <Border.Effect><DropShadowEffect Color="#DFFF32" BlurRadius="18" ShadowDepth="0" Opacity="0.20"/></Border.Effect>
+            <Grid><TextBlock Text="U" Foreground="{StaticResource AccentBrush}" FontWeight="Black" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center"/><Rectangle Width="20" Height="2" Fill="{StaticResource AccentBrush}" VerticalAlignment="Bottom" Margin="0,0,0,7"/></Grid>
           </Border>
-          <StackPanel Margin="12,3,0,0"><TextBlock Text="UHM" FontSize="22" FontWeight="Black"/><TextBlock Text="NATIVE LAUNCHER" Foreground="{StaticResource MutedBrush}" FontSize="8"/></StackPanel>
+          <StackPanel Margin="13,4,0,0"><TextBlock Text="UHM" FontSize="23" FontWeight="Black"/><TextBlock Text="ASSETTO MOD CONTROL" Foreground="{StaticResource MutedBrush}" FontSize="8" Margin="0,3,0,0"/></StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1">
-          <Button x:Name="NavDashboard" Style="{StaticResource NavButton}" Content="⌂     داشبورد"/>
-          <Button x:Name="NavCatalog" Style="{StaticResource NavButton}" Content="▦     کاتالوگ مودها"/>
-          <Button x:Name="NavQueue" Style="{StaticResource NavButton}" Content="⇩     صف دانلود و نصب"/>
-          <Button x:Name="NavInstalled" Style="{StaticResource NavButton}" Content="✓     مودهای نصب‌شده"/>
-          <Button x:Name="NavSettings" Style="{StaticResource NavButton}" Content="⚙     تنظیمات"/>
+          <TextBlock Text="منوی اصلی" Foreground="#556371" FontSize="9" Margin="14,0,14,10"/>
+          <Button x:Name="NavDashboard" Style="{StaticResource NavButton}"><DockPanel><Border Width="29" Height="29" CornerRadius="8" Background="#111A23" Margin="0,0,11,0"><TextBlock Text="◈" Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="داشبورد" VerticalAlignment="Center"/></DockPanel></Button>
+          <Button x:Name="NavCatalog" Style="{StaticResource NavButton}"><DockPanel><Border Width="29" Height="29" CornerRadius="8" Background="#111A23" Margin="0,0,11,0"><TextBlock Text="▦" Foreground="{StaticResource CyanBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="کاتالوگ مودها" VerticalAlignment="Center"/></DockPanel></Button>
+          <Button x:Name="NavQueue" Style="{StaticResource NavButton}"><DockPanel><Border Width="29" Height="29" CornerRadius="8" Background="#111A23" Margin="0,0,11,0"><TextBlock Text="⇣" Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="صف دانلود و نصب" VerticalAlignment="Center"/></DockPanel></Button>
+          <Button x:Name="NavInstalled" Style="{StaticResource NavButton}"><DockPanel><Border Width="29" Height="29" CornerRadius="8" Background="#111A23" Margin="0,0,11,0"><TextBlock Text="✓" Foreground="{StaticResource SuccessBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="مودهای نصب‌شده" VerticalAlignment="Center"/></DockPanel></Button>
+          <Button x:Name="NavSettings" Style="{StaticResource NavButton}"><DockPanel><Border Width="29" Height="29" CornerRadius="8" Background="#111A23" Margin="0,0,11,0"><TextBlock Text="⚙" Foreground="{StaticResource MutedBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="تنظیمات" VerticalAlignment="Center"/></DockPanel></Button>
         </StackPanel>
-        <Border Grid.Row="2" Background="#0F161E" BorderBrush="#202B36" BorderThickness="1" CornerRadius="11" Padding="13">
+        <Border Grid.Row="2" BorderBrush="#293744" BorderThickness="1" CornerRadius="12" Padding="14">
+          <Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#121B24" Offset="0"/><GradientStop Color="#10170F" Offset="1"/></LinearGradientBrush></Border.Background>
           <StackPanel>
-            <DockPanel><Ellipse Width="8" Height="8" Fill="{StaticResource SuccessBrush}" Margin="0,0,8,0"/><TextBlock Text="هسته محلی آماده" FontSize="11"/><TextBlock x:Name="SidebarVersion" Text="0.2.0" Foreground="{StaticResource MutedBrush}" FontSize="9" DockPanel.Dock="Left"/></DockPanel>
-            <TextBlock Text="بدون مرورگر و بدون EXE اختصاصی" Foreground="#596777" FontSize="9" Margin="0,8,0,0"/>
+            <DockPanel><Grid Width="18" Height="18" Margin="0,0,8,0"><Ellipse Fill="#2051E49A"/><Ellipse Width="7" Height="7" Fill="{StaticResource SuccessBrush}"/></Grid><TextBlock Text="Native Engine" FontSize="11" FontWeight="SemiBold"/><Border DockPanel.Dock="Left" Background="#18FFFFFF" CornerRadius="6" Padding="7,3"><TextBlock x:Name="SidebarVersion" Text="v0.2.0" Foreground="{StaticResource MutedBrush}" FontSize="8"/></Border></DockPanel>
+            <TextBlock Text="هسته محلی آماده و امن است" Foreground="#6C7A88" FontSize="9" Margin="0,9,0,0"/>
           </StackPanel>
         </Border>
       </Grid>
@@ -112,13 +310,14 @@
     <!-- Workspace -->
     <Grid Grid.Column="0" FlowDirection="RightToLeft">
       <Grid.RowDefinitions><RowDefinition Height="64"/><RowDefinition Height="*"/><RowDefinition Height="32"/></Grid.RowDefinitions>
-      <Border Grid.Row="0" Background="#C9070A0E" BorderBrush="#202A34" BorderThickness="0,0,0,1" x:Name="TitleBar">
+      <Border Grid.Row="0" BorderBrush="#263440" BorderThickness="0,0,0,1" x:Name="TitleBar"><Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,0"><GradientStop Color="#F0090D12" Offset="0"/><GradientStop Color="#F00D1319" Offset="0.55"/><GradientStop Color="#F00B100D" Offset="1"/></LinearGradientBrush></Border.Background>
         <Grid Margin="22,0"><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
           <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" FlowDirection="LeftToRight">
-            <Button x:Name="BtnClose" Style="{StaticResource GhostButton}" Content="×" FontSize="22" Width="38" Height="36" Padding="0" Foreground="{StaticResource DangerBrush}"/>
-            <Button x:Name="BtnMinimize" Style="{StaticResource GhostButton}" Content="—" Width="38" Height="36" Padding="0"/>
+            <Button x:Name="BtnClose" Style="{StaticResource GhostButton}" Content="×" FontSize="22" Width="38" Height="36" Padding="0" Foreground="{StaticResource DangerBrush}" ToolTip="بستن"/>
+            <Button x:Name="BtnMaximize" Style="{StaticResource GhostButton}" Content="□" FontSize="15" Width="38" Height="36" Padding="0" ToolTip="بزرگ‌نمایی"/>
+            <Button x:Name="BtnMinimize" Style="{StaticResource GhostButton}" Content="—" Width="38" Height="36" Padding="0" ToolTip="کمینه"/>
           </StackPanel>
-          <Border Grid.Column="1" Width="500" Height="40" HorizontalAlignment="Center" Background="#0C1219" BorderBrush="{StaticResource LineBrush}" BorderThickness="1" CornerRadius="10">
+          <Border Grid.Column="1" Width="440" Height="40" HorizontalAlignment="Center" Background="#0C1219" BorderBrush="{StaticResource LineBrush}" BorderThickness="1" CornerRadius="10">
             <DockPanel Margin="12,0"><TextBlock Text="⌕" FontSize="22" Foreground="{StaticResource MutedBrush}" VerticalAlignment="Center" Margin="0,0,9,0"/><TextBox x:Name="GlobalSearch" BorderThickness="0" Background="Transparent" Padding="2" VerticalContentAlignment="Center" ToolTip="جست‌وجوی نام مود یا سازنده"/></DockPanel>
           </Border>
           <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
@@ -132,16 +331,21 @@
         <!-- Dashboard -->
         <Grid x:Name="PageDashboard">
           <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-          <StackPanel Margin="0,0,0,18"><TextBlock Text="مرکز کنترل" Foreground="{StaticResource AccentBrush}" FontSize="10" FontWeight="SemiBold"/><TextBlock Text="داشبورد راننده" FontSize="30" FontWeight="Bold" Margin="0,5,0,0"/><TextBlock Text="وضعیت مودها، بازی و دانلودها در یک نمای سریع" Foreground="{StaticResource MutedBrush}" Margin="0,6,0,0"/></StackPanel>
+          <Border Height="118" Margin="0,0,0,19" Background="{StaticResource HeroBrush}" BorderBrush="#31402D" BorderThickness="1" CornerRadius="16" ClipToBounds="True">
+            <Grid>
+              <Canvas IsHitTestVisible="False" Opacity="0.25"><Rectangle Width="260" Height="34" Fill="#27DFFF32" Canvas.Left="-25" Canvas.Top="15" RenderTransformOrigin="0.5,0.5"><Rectangle.RenderTransform><SkewTransform AngleX="-24"/></Rectangle.RenderTransform></Rectangle><Rectangle Width="190" Height="2" Fill="#70DFFF32" Canvas.Left="80" Canvas.Top="78"/><Ellipse Width="180" Height="180" Stroke="#16FFFFFF" StrokeThickness="25" Canvas.Left="735" Canvas.Top="-65"/></Canvas>
+              <Grid Margin="24,18"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><StackPanel Grid.Column="0"><StackPanel Orientation="Horizontal"><Border Background="#22DFFF32" CornerRadius="6" Padding="8,3" Margin="0,0,8,0"><TextBlock Text="NATIVE CONTROL" Foreground="{StaticResource AccentBrush}" FontSize="8" FontWeight="Bold"/></Border><TextBlock Text="مرکز کنترل گاراژ" Foreground="{StaticResource MutedBrush}" FontSize="9" VerticalAlignment="Center"/></StackPanel><TextBlock Text="داشبورد راننده" FontSize="29" FontWeight="Bold" Margin="0,8,0,0"/><TextBlock Text="مودها، بازی و دانلودها؛ سریع، امن و یک‌جا" Foreground="#A4B0BA" FontSize="10" Margin="0,4,0,0"/></StackPanel><StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"><Button x:Name="BtnHeroCatalog" Style="{StaticResource PrimaryButton}" Content="ورود به کاتالوگ  ←" Padding="18,10"/><TextBlock Text="مود موردنظر را پیدا و نصب کنید" Foreground="#71808D" FontSize="8" HorizontalAlignment="Center" Margin="0,7,0,0"/></StackPanel></Grid>
+            </Grid>
+          </Border>
           <UniformGrid Grid.Row="1" Columns="4" Margin="-6,0,-6,18">
-            <Border Style="{StaticResource StatCard}"><StackPanel><TextBlock Text="کل مودهای فعال" Foreground="{StaticResource MutedBrush}" FontSize="11"/><TextBlock x:Name="StatTotalMods" Text="۰" FontSize="29" FontWeight="Bold" Margin="0,13,0,0"/><TextBlock Text="کاتالوگ تأییدشده" Foreground="#596777" FontSize="9" Margin="0,7,0,0"/></StackPanel></Border>
-            <Border Style="{StaticResource StatCard}"><StackPanel><TextBlock Text="نصب‌شده‌ها" Foreground="{StaticResource MutedBrush}" FontSize="11"/><TextBlock x:Name="StatInstalled" Text="۰" FontSize="29" FontWeight="Bold" Margin="0,13,0,0"/><TextBlock Text="ثبت‌شده توسط UHM" Foreground="#596777" FontSize="9" Margin="0,7,0,0"/></StackPanel></Border>
-            <Border Style="{StaticResource StatCard}"><StackPanel><TextBlock Text="دانلودهای فعال" Foreground="{StaticResource MutedBrush}" FontSize="11"/><TextBlock x:Name="StatActive" Text="۰" FontSize="29" FontWeight="Bold" Margin="0,13,0,0"/><TextBlock Text="Workerهای پس‌زمینه" Foreground="#596777" FontSize="9" Margin="0,7,0,0"/></StackPanel></Border>
-            <Border Style="{StaticResource StatCard}"><StackPanel><TextBlock Text="وضعیت Assetto Corsa" Foreground="{StaticResource MutedBrush}" FontSize="11"/><TextBlock x:Name="StatGame" Text="بررسی…" FontSize="20" FontWeight="Bold" Margin="0,15,0,0"/><TextBlock x:Name="StatGamePath" Text="" Foreground="#596777" FontSize="9" Margin="0,7,0,0"/></StackPanel></Border>
+            <Border Style="{StaticResource StatCard}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="4"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Background="{StaticResource AccentBrush}" CornerRadius="3"/><StackPanel Grid.Column="1" Margin="14,0,0,0"><DockPanel><TextBlock Text="کل مودهای فعال" Foreground="{StaticResource MutedBrush}" FontSize="10" VerticalAlignment="Center"/><Border DockPanel.Dock="Left" Width="30" Height="30" Background="#20DFFF32" CornerRadius="8"><TextBlock Text="▦" Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border></DockPanel><TextBlock x:Name="StatTotalMods" Text="۰" FontSize="28" FontWeight="Bold" Margin="0,8,0,0"/><TextBlock Text="کاتالوگ قابل جست‌وجو" Foreground="#5F6E7C" FontSize="8" Margin="0,5,0,0"/></StackPanel></Grid></Border>
+            <Border Style="{StaticResource StatCard}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="4"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Background="{StaticResource SuccessBrush}" CornerRadius="3"/><StackPanel Grid.Column="1" Margin="14,0,0,0"><DockPanel><TextBlock Text="مودهای نصب‌شده" Foreground="{StaticResource MutedBrush}" FontSize="10" VerticalAlignment="Center"/><Border DockPanel.Dock="Left" Width="30" Height="30" Background="#2051E49A" CornerRadius="8"><TextBlock Text="✓" Foreground="{StaticResource SuccessBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border></DockPanel><TextBlock x:Name="StatInstalled" Text="۰" FontSize="28" FontWeight="Bold" Margin="0,8,0,0"/><TextBlock Text="با Manifest نصب" Foreground="#5F6E7C" FontSize="8" Margin="0,5,0,0"/></StackPanel></Grid></Border>
+            <Border Style="{StaticResource StatCard}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="4"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Background="{StaticResource CyanBrush}" CornerRadius="3"/><StackPanel Grid.Column="1" Margin="14,0,0,0"><DockPanel><TextBlock Text="دانلودهای فعال" Foreground="{StaticResource MutedBrush}" FontSize="10" VerticalAlignment="Center"/><Border DockPanel.Dock="Left" Width="30" Height="30" Background="#2048D7FF" CornerRadius="8"><TextBlock Text="⇣" Foreground="{StaticResource CyanBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border></DockPanel><TextBlock x:Name="StatActive" Text="۰" FontSize="28" FontWeight="Bold" Margin="0,8,0,0"/><TextBlock Text="Workerهای پس‌زمینه" Foreground="#5F6E7C" FontSize="8" Margin="0,5,0,0"/></StackPanel></Grid></Border>
+            <Border Style="{StaticResource StatCard}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="4"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Background="{StaticResource WarningBrush}" CornerRadius="3"/><StackPanel Grid.Column="1" Margin="14,0,0,0"><DockPanel><TextBlock Text="Assetto Corsa" Foreground="{StaticResource MutedBrush}" FontSize="10" VerticalAlignment="Center"/><Border DockPanel.Dock="Left" Width="30" Height="30" Background="#20FFA34B" CornerRadius="8"><TextBlock Text="AC" Foreground="{StaticResource WarningBrush}" FontSize="9" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border></DockPanel><TextBlock x:Name="StatGame" Text="بررسی…" FontSize="17" FontWeight="Bold" Margin="0,11,0,0"/><TextBlock x:Name="StatGamePath" Text="" Foreground="#5F6E7C" FontSize="8" Margin="0,6,0,0"/></StackPanel></Grid></Border>
           </UniformGrid>
           <Grid Grid.Row="2"><Grid.ColumnDefinitions><ColumnDefinition Width="1.6*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Style="{StaticResource PanelCard}" Padding="20"><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions><DockPanel Margin="0,0,0,14"><TextBlock Text="مودهای منتخب" FontSize="15" FontWeight="SemiBold"/><Button x:Name="BtnDashboardCatalog" DockPanel.Dock="Left" Style="{StaticResource GhostButton}" Content="نمایش همه ←"/></DockPanel><ListBox x:Name="FeaturedList" Grid.Row="1"/></Grid></Border>
-            <Border Grid.Column="2" Style="{StaticResource PanelCard}" Padding="20"><StackPanel><TextBlock Text="سلامت سیستم" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,16"/><Border Background="#0B1117" CornerRadius="9" Padding="12" Margin="0,4"><DockPanel><TextBlock Text="Steam"/><TextBlock x:Name="HealthSteam" Text="در حال بررسی" Foreground="{StaticResource WarningBrush}" DockPanel.Dock="Left"/></DockPanel></Border><Border Background="#0B1117" CornerRadius="9" Padding="12" Margin="0,4"><DockPanel><TextBlock Text="Assetto Corsa"/><TextBlock x:Name="HealthGame" Text="در حال بررسی" Foreground="{StaticResource WarningBrush}" DockPanel.Dock="Left"/></DockPanel></Border><Border Background="#0B1117" CornerRadius="9" Padding="12" Margin="0,4"><DockPanel><TextBlock Text="7-Zip"/><TextBlock x:Name="Health7Zip" Text="تست نشده" Foreground="{StaticResource MutedBrush}" DockPanel.Dock="Left"/></DockPanel></Border><Button x:Name="BtnRunDiagnostics" Style="{StaticResource BaseButton}" Content="اجرای تست پیش‌نیازها" Margin="0,14,0,0"/></StackPanel></Border>
+            <Border Grid.Column="0" Style="{StaticResource PanelCard}" Padding="20"><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions><DockPanel Margin="0,0,0,14"><StackPanel><TextBlock Text="مودهای منتخب" FontSize="15" FontWeight="SemiBold"/><TextBlock Text="پیشنهادهای برجسته کاتالوگ" Foreground="#657482" FontSize="8" Margin="0,4,0,0"/></StackPanel><Button x:Name="BtnDashboardCatalog" DockPanel.Dock="Left" Style="{StaticResource GhostButton}" Content="نمایش همه  ←"/></DockPanel><ListBox x:Name="FeaturedList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto"><ListBox.ItemTemplate><DataTemplate><Border Background="#0A1016" BorderBrush="#1F2B35" BorderThickness="1" CornerRadius="9" Padding="12,9" Margin="0,0,0,6"><DockPanel><Border Width="26" Height="26" CornerRadius="7" Background="#1EDFFF32" Margin="0,0,10,0"><TextBlock Text="★" Foreground="{StaticResource AccentBrush}" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="{Binding display}" VerticalAlignment="Center" FontSize="10"/><TextBlock Text="←" DockPanel.Dock="Left" Foreground="#52616F" VerticalAlignment="Center"/></DockPanel></Border></DataTemplate></ListBox.ItemTemplate></ListBox></Grid></Border>
+            <Border Grid.Column="2" Style="{StaticResource PanelCard}" Padding="20"><StackPanel><TextBlock Text="سلامت سیستم" FontSize="15" FontWeight="SemiBold"/><TextBlock Text="بررسی سریع پیش‌نیازهای نصب" Foreground="#657482" FontSize="8" Margin="0,4,0,12"/><Border Background="#0A1016" BorderBrush="#1E2933" BorderThickness="1" CornerRadius="9" Padding="11" Margin="0,4"><DockPanel><Border Width="25" Height="25" CornerRadius="7" Background="#1B2430" Margin="0,0,9,0"><TextBlock Text="S" Foreground="{StaticResource CyanBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/></Border><TextBlock Text="Steam" VerticalAlignment="Center"/><TextBlock x:Name="HealthSteam" Text="در حال بررسی" Foreground="{StaticResource WarningBrush}" FontSize="9" DockPanel.Dock="Left" VerticalAlignment="Center"/></DockPanel></Border><Border Background="#0A1016" BorderBrush="#1E2933" BorderThickness="1" CornerRadius="9" Padding="11" Margin="0,4"><DockPanel><Border Width="25" Height="25" CornerRadius="7" Background="#1B2430" Margin="0,0,9,0"><TextBlock Text="AC" Foreground="{StaticResource AccentBrush}" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/></Border><TextBlock Text="Assetto Corsa" VerticalAlignment="Center"/><TextBlock x:Name="HealthGame" Text="در حال بررسی" Foreground="{StaticResource WarningBrush}" FontSize="9" DockPanel.Dock="Left" VerticalAlignment="Center"/></DockPanel></Border><Border Background="#0A1016" BorderBrush="#1E2933" BorderThickness="1" CornerRadius="9" Padding="11" Margin="0,4"><DockPanel><Border Width="25" Height="25" CornerRadius="7" Background="#1B2430" Margin="0,0,9,0"><TextBlock Text="7z" Foreground="{StaticResource MutedBrush}" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/></Border><TextBlock Text="7-Zip" VerticalAlignment="Center"/><TextBlock x:Name="Health7Zip" Text="تست نشده" Foreground="{StaticResource MutedBrush}" FontSize="9" DockPanel.Dock="Left" VerticalAlignment="Center"/></DockPanel></Border><Button x:Name="BtnRunDiagnostics" Style="{StaticResource BaseButton}" Content="اجرای تست پیش‌نیازها" Margin="0,12,0,0"/></StackPanel></Border>
           </Grid>
         </Grid>
 
@@ -150,13 +354,13 @@
           <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
           <DockPanel Margin="0,0,0,18"><StackPanel><TextBlock Text="MOD LIBRARY" Foreground="{StaticResource AccentBrush}" FontSize="10"/><TextBlock Text="کاتالوگ مودها" FontSize="28" FontWeight="Bold" Margin="0,5,0,0"/><TextBlock Text="مود را انتخاب کنید، جزئیات را ببینید و با یک کلیک به صف بفرستید." Foreground="{StaticResource MutedBrush}" Margin="0,6,0,0"/></StackPanel><TextBlock x:Name="CatalogCount" DockPanel.Dock="Left" VerticalAlignment="Bottom" Foreground="{StaticResource MutedBrush}" Margin="20,0"/></DockPanel>
           <Border Grid.Row="1" Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource LineBrush}" BorderThickness="1" CornerRadius="12" Padding="10" Margin="0,0,0,15"><StackPanel><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="180"/><ColumnDefinition Width="180"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBox x:Name="CatalogSearch" Grid.Column="0" Margin="0,0,8,0" ToolTip="جست‌وجوی مود"/><ComboBox x:Name="CategoryFilter" Grid.Column="1" Margin="0,0,8,0"/><ComboBox x:Name="SortFilter" Grid.Column="2" Margin="0,0,8,0"/><CheckBox x:Name="CatalogAutoInstall" Grid.Column="3" Content="نصب پس از دانلود" Margin="12,0"/></Grid><WrapPanel Margin="0,9,0,0"><TextBlock Text="فیلتر:" Foreground="{StaticResource MutedBrush}" VerticalAlignment="Center" Margin="4,0,8,0"/><ComboBox x:Name="VersionFilter" Width="130" Margin="4,0"/><ComboBox x:Name="CspFilter" Width="130" Margin="4,0"/><ComboBox x:Name="PasswordFilter" Width="130" Margin="4,0"/><ComboBox x:Name="InstalledFilter" Width="140" Margin="4,0"/></WrapPanel></StackPanel></Border>
-          <ListBox x:Name="CatalogList" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Auto">
+          <ListBox x:Name="CatalogList" Grid.Row="2" Style="{StaticResource CatalogListStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemsPanel><ItemsPanelTemplate><WrapPanel Orientation="Horizontal"/></ItemsPanelTemplate></ListBox.ItemsPanel>
             <ListBox.ItemTemplate><DataTemplate>
-              <Border Width="276" Height="230" Margin="7" Background="#0D141C" BorderBrush="#222E39" BorderThickness="1" CornerRadius="14">
-                <Grid><Grid.RowDefinitions><RowDefinition Height="78"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-                  <Border Background="#17232D" CornerRadius="13,13,0,0"><Grid><TextBlock Text="UHM" Foreground="#24DFFF32" FontSize="37" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/><Image Source="{Binding image}" Stretch="UniformToFill" Opacity="0.58"/><Border Background="#DFFF32" CornerRadius="5" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Padding="7,3"><TextBlock Text="{Binding categoryFa}" Foreground="#0A0E10" FontSize="8" FontWeight="Bold"/></Border></Grid></Border>
-                  <Grid Grid.Row="1" Margin="15,12"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><TextBlock Text="{Binding nameFa}" FontSize="15" FontWeight="SemiBold"/><TextBlock Grid.Row="1" Text="{Binding authorLine}" Foreground="{StaticResource MutedBrush}" FontSize="9" Margin="0,6,0,0"/><TextBlock Grid.Row="2" Text="{Binding shortDescription}" Foreground="#8794A2" FontSize="10" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="0,10,0,8" MaxHeight="38"/><DockPanel Grid.Row="3"><TextBlock Text="{Binding specLine}" Foreground="#627181" FontSize="9" VerticalAlignment="Center"/><Button x:Name="CatalogOpenButton" Tag="{Binding id}" DockPanel.Dock="Left" Style="{StaticResource PrimaryButton}" Content="جزئیات و نصب" Padding="11,6" FontSize="9"/></DockPanel></Grid>
+              <Border Style="{StaticResource CatalogCard}">
+                <Grid><Grid.RowDefinitions><RowDefinition Height="112"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                  <Border Background="#17232D" CornerRadius="14,14,0,0" ClipToBounds="True"><Grid><TextBlock Text="UHM" Foreground="#24DFFF32" FontSize="44" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/><Image Source="{Binding image}" Stretch="UniformToFill" Opacity="0.68"/><Rectangle><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#00000000" Offset="0.25"/><GradientStop Color="#C00D141C" Offset="1"/></LinearGradientBrush></Rectangle.Fill></Rectangle><Border Background="#DFFF32" CornerRadius="6" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="11" Padding="8,4"><TextBlock Text="{Binding categoryFa}" Foreground="#0A0E10" FontSize="8" FontWeight="Bold"/></Border><Border Background="#C0121B24" BorderBrush="#385060" BorderThickness="1" CornerRadius="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11" Padding="8,4"><TextBlock Text="{Binding verifiedText}" Foreground="#BFEFFF" FontSize="8"/></Border></Grid></Border>
+                  <Grid Grid.Row="1" Margin="16,11,16,14"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><DockPanel><TextBlock Text="{Binding nameFa}" FontSize="15" FontWeight="SemiBold"/><TextBlock Text="{Binding cspLine}" DockPanel.Dock="Left" Foreground="{StaticResource WarningBrush}" FontSize="8" VerticalAlignment="Center"/></DockPanel><TextBlock Grid.Row="1" Text="{Binding authorLine}" Foreground="{StaticResource MutedBrush}" FontSize="9" Margin="0,5,0,0"/><TextBlock Grid.Row="2" Text="{Binding shortDescription}" Foreground="#91A0AE" FontSize="10" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" LineHeight="17" Margin="0,9,0,8" MaxHeight="44"/><DockPanel Grid.Row="3" LastChildFill="False"><StackPanel Orientation="Horizontal" VerticalAlignment="Center"><TextBlock Text="{Binding specLine}" Foreground="#687786" FontSize="8"/><Border Width="4" Height="4" Background="#536270" CornerRadius="2" Margin="8,0"/><TextBlock Text="{Binding installState}" Foreground="{StaticResource SuccessBrush}" FontSize="8"/></StackPanel><Button x:Name="CatalogOpenButton" Tag="{Binding id}" DockPanel.Dock="Left" Style="{StaticResource PrimaryButton}" Content="مشاهده و نصب" Padding="12,6" FontSize="9"/></DockPanel></Grid>
                 </Grid>
               </Border>
             </DataTemplate></ListBox.ItemTemplate>
@@ -167,8 +371,8 @@
         <Grid x:Name="PageQueue" Visibility="Collapsed">
           <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
           <StackPanel Margin="0,0,0,18"><TextBlock Text="TRANSFER CENTER" Foreground="{StaticResource AccentBrush}" FontSize="10"/><TextBlock Text="صف دانلود و نصب" FontSize="28" FontWeight="Bold" Margin="0,5,0,0"/><TextBlock Text="دانلودها در Worker پس‌زمینه اجرا می‌شوند؛ بستن برنامه فایل ناقص را حذف نمی‌کند." Foreground="{StaticResource MutedBrush}" Margin="0,6,0,0"/></StackPanel>
-          <ListBox x:Name="QueueList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <ListBox.ItemTemplate><DataTemplate><Border Background="#0D141C" BorderBrush="#222E39" BorderThickness="1" CornerRadius="12" Padding="16" Margin="0,0,0,10"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="58"/><ColumnDefinition Width="1.1*"/><ColumnDefinition Width="1.8*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><Border Grid.Column="0" Width="50" Height="50" CornerRadius="10" Background="#1A2731"><TextBlock Text="{Binding initials}" Foreground="{StaticResource AccentBrush}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="12,0"><TextBlock Text="{Binding nameFa}" FontWeight="SemiBold"/><TextBlock Text="{Binding versionLine}" Foreground="{StaticResource MutedBrush}" FontSize="9" Margin="0,6,0,0"/></StackPanel><StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="12,0"><DockPanel Margin="0,0,0,7"><TextBlock Text="{Binding statusFa}" Foreground="{StaticResource AccentBrush}" FontSize="10"/><TextBlock Text="{Binding progressText}" DockPanel.Dock="Left" Foreground="{StaticResource MutedBrush}" FontSize="9"/></DockPanel><ProgressBar Value="{Binding progress}" Maximum="100"/><DockPanel Margin="0,7,0,0"><TextBlock Text="{Binding transferLine}" Foreground="#647282" FontSize="8"/><TextBlock Text="{Binding error}" DockPanel.Dock="Left" Foreground="{StaticResource DangerBrush}" FontSize="8" MaxWidth="260"/></DockPanel></StackPanel><StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center"><Button x:Name="QueuePrimaryButton" Tag="{Binding id}" Style="{StaticResource PrimaryButton}" Content="{Binding primaryLabel}" Padding="12,7" Margin="3"/><Button x:Name="QueueCancelButton" Tag="{Binding id}" Style="{StaticResource BaseButton}" Content="لغو" Padding="10,7" Margin="3"/><Button x:Name="QueueRemoveButton" Tag="{Binding id}" Style="{StaticResource GhostButton}" Content="×" Foreground="{StaticResource DangerBrush}" Padding="9,7" Margin="3"/></StackPanel></Grid></Border></DataTemplate></ListBox.ItemTemplate>
+          <ListBox x:Name="QueueList" Grid.Row="1" Style="{StaticResource QueueListStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemTemplate><DataTemplate><Border Style="{StaticResource PanelCard}" Background="#0D141C" Padding="17" Margin="0,0,0,11" MinHeight="84"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="58"/><ColumnDefinition Width="1.1*"/><ColumnDefinition Width="1.8*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><Border Grid.Column="0" Width="50" Height="50" CornerRadius="10" Background="#1A2731"><TextBlock Text="{Binding initials}" Foreground="{StaticResource AccentBrush}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="12,0"><TextBlock Text="{Binding nameFa}" FontWeight="SemiBold"/><TextBlock Text="{Binding versionLine}" Foreground="{StaticResource MutedBrush}" FontSize="9" Margin="0,6,0,0"/></StackPanel><StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="12,0"><DockPanel Margin="0,0,0,7"><TextBlock Text="{Binding statusFa}" Foreground="{StaticResource AccentBrush}" FontSize="10"/><TextBlock Text="{Binding progressText}" DockPanel.Dock="Left" Foreground="{StaticResource MutedBrush}" FontSize="9"/></DockPanel><ProgressBar Value="{Binding progress}" Maximum="100"/><DockPanel Margin="0,7,0,0"><TextBlock Text="{Binding transferLine}" Foreground="#647282" FontSize="8"/><TextBlock Text="{Binding error}" DockPanel.Dock="Left" Foreground="{StaticResource DangerBrush}" FontSize="8" MaxWidth="260"/></DockPanel></StackPanel><StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center"><Button x:Name="QueuePrimaryButton" Tag="{Binding id}" Style="{StaticResource PrimaryButton}" Content="{Binding primaryLabel}" IsEnabled="{Binding primaryEnabled}" Padding="12,7" Margin="3"/><Button x:Name="QueueCancelButton" Tag="{Binding id}" Style="{StaticResource BaseButton}" Content="توقف" Visibility="{Binding cancelVisibility}" Padding="10,7" Margin="3"/><Button x:Name="QueueRemoveButton" Tag="{Binding id}" Style="{StaticResource GhostButton}" Content="×" Foreground="{StaticResource DangerBrush}" Padding="9,7" Margin="3" ToolTip="حذف رکورد صف"/></StackPanel></Grid></Border></DataTemplate></ListBox.ItemTemplate>
           </ListBox>
         </Grid>
 
@@ -176,9 +380,9 @@
         <Grid x:Name="PageInstalled" Visibility="Collapsed">
           <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
           <StackPanel Margin="0,0,0,18"><TextBlock Text="LOCAL LIBRARY" Foreground="{StaticResource AccentBrush}" FontSize="10"/><TextBlock Text="مودهای نصب‌شده" FontSize="28" FontWeight="Bold" Margin="0,5,0,0"/><TextBlock Text="حذف مود در این نسخه وجود ندارد؛ این صفحه فقط Manifest نصب‌های UHM را نمایش می‌دهد." Foreground="{StaticResource MutedBrush}" Margin="0,6,0,0"/></StackPanel>
-          <DataGrid x:Name="InstalledGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal" Background="#0C1118" Foreground="{StaticResource TextBrush}" BorderBrush="{StaticResource LineBrush}" RowBackground="#0C1118" AlternatingRowBackground="#101720" HorizontalGridLinesBrush="#202A34">
+          <Grid Grid.Row="1"><Border Style="{StaticResource PanelCard}" ClipToBounds="True"><DataGrid x:Name="InstalledGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" HeadersVisibility="Column" GridLinesVisibility="None" Background="#0C1118" Foreground="{StaticResource TextBrush}" BorderThickness="0" RowBackground="#0C1118" AlternatingRowBackground="#101720" AlternationCount="2" RowHeaderWidth="0">
             <DataGrid.Columns><DataGridTextColumn Header="نام مود" Binding="{Binding nameFa}" Width="1.4*"/><DataGridTextColumn Header="نسخه" Binding="{Binding installedVersion}" Width="0.5*"/><DataGridTextColumn Header="تاریخ نصب" Binding="{Binding installedDate}" Width="0.8*"/><DataGridTextColumn Header="تعداد فایل" Binding="{Binding fileCount}" Width="0.5*"/><DataGridTextColumn Header="مسیر بازی" Binding="{Binding gamePath}" Width="2*"/></DataGrid.Columns>
-          </DataGrid>
+          </DataGrid></Border><Border x:Name="InstalledEmptyState" Background="#0D131B" BorderBrush="#263442" BorderThickness="1" CornerRadius="14" Padding="35"><StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"><Border Width="58" Height="58" CornerRadius="17" Background="#2051E49A"><TextBlock Text="✓" Foreground="{StaticResource SuccessBrush}" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="هنوز مودی نصب نشده است" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,15,0,0"/><TextBlock Text="پس از اولین نصب، Manifest مود در این صفحه نمایش داده می‌شود" Foreground="{StaticResource MutedBrush}" FontSize="9" HorizontalAlignment="Center" Margin="0,7,0,0"/></StackPanel></Border></Grid>
         </Grid>
 
         <!-- Settings -->
@@ -200,20 +404,20 @@
       </Grid>
 
       <Border Grid.Row="2" Background="#090D12" BorderBrush="#202A34" BorderThickness="0,1,0,0" FlowDirection="RightToLeft">
-        <DockPanel Margin="16,0"><TextBlock x:Name="StatusText" Text="آماده" Foreground="{StaticResource MutedBrush}" FontSize="9" VerticalAlignment="Center"/><TextBlock x:Name="StatusQueue" Text="صف خالی" DockPanel.Dock="Left" Foreground="#596777" FontSize="9" VerticalAlignment="Center"/></DockPanel>
+        <DockPanel Margin="18,0"><StackPanel Orientation="Horizontal" VerticalAlignment="Center"><Ellipse Width="6" Height="6" Fill="{StaticResource AccentBrush}" Margin="0,0,8,0"/><TextBlock x:Name="StatusText" Text="آماده" Foreground="{StaticResource MutedBrush}" FontSize="9" VerticalAlignment="Center"/></StackPanel><StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center"><TextBlock Text="UHM NATIVE" Foreground="#465461" FontSize="8" Margin="0,0,16,0"/><TextBlock x:Name="StatusQueue" Text="صف خالی" Foreground="#637280" FontSize="9"/></StackPanel></DockPanel>
       </Border>
     </Grid>
 
     <!-- Mod details overlay -->
     <Grid x:Name="DetailsOverlay" Grid.ColumnSpan="2" Background="#D9020508" Visibility="Collapsed" Panel.ZIndex="50" FlowDirection="RightToLeft">
-      <Border Width="780" MaxHeight="700" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#0D141C" BorderBrush="#34424F" BorderThickness="1" CornerRadius="18" Padding="26">
-        <Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><DockPanel><Button x:Name="BtnCloseDetails" Style="{StaticResource GhostButton}" Content="×" FontSize="22" DockPanel.Dock="Left"/><StackPanel><TextBlock x:Name="DetailCategory" Foreground="{StaticResource AccentBrush}" FontSize="10"/><TextBlock x:Name="DetailName" FontSize="27" FontWeight="Bold" Margin="0,6,0,0"/><TextBlock x:Name="DetailAuthor" Foreground="{StaticResource MutedBrush}" Margin="0,5,0,0"/></StackPanel></DockPanel><ScrollViewer Grid.Row="1" Margin="0,22,0,18" VerticalScrollBarVisibility="Auto"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="1.4*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><StackPanel Grid.Column="0"><TextBlock Text="درباره مود" FontWeight="SemiBold"/><TextBlock x:Name="DetailDescription" TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" LineHeight="22" Margin="0,10,0,18"/><TextBlock Text="دستورالعمل و وابستگی‌ها" FontWeight="SemiBold"/><TextBlock x:Name="DetailInstructions" TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" LineHeight="21" Margin="0,10,0,0"/></StackPanel><StackPanel Grid.Column="2"><Border Background="#091016" CornerRadius="11" Padding="14"><StackPanel><DockPanel Margin="0,5"><TextBlock Text="نسخه" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailVersion" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="حجم" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailSize" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="آرشیو" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailArchive" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="CSP" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailCsp" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="مسیر نصب" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailInstallRoot" DockPanel.Dock="Left" MaxWidth="180"/></DockPanel></StackPanel></Border><TextBlock Text="مقصد نصب" Foreground="{StaticResource MutedBrush}" FontSize="10" Margin="0,16,0,7"/><ComboBox x:Name="DetailTargetPath" DisplayMemberPath="display" SelectedValuePath="id"/><CheckBox x:Name="DetailAutoInstall" Content="پس از دانلود نصب شود" Margin="0,13,0,0"/></StackPanel></Grid></ScrollViewer><Grid Grid.Row="2"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><Button x:Name="BtnOfficialPage" Grid.Column="0" Style="{StaticResource GhostButton}" HorizontalAlignment="Right" Content="بازکردن صفحه رسمی ↗"/><Button x:Name="BtnDetailDownload" Grid.Column="1" Style="{StaticResource BaseButton}" Content="فقط دانلود" Margin="6,0"/><Button x:Name="BtnDetailInstall" Grid.Column="2" Style="{StaticResource PrimaryButton}" Content="دانلود و نصب" Margin="6,0"/></Grid></Grid>
+      <Border Width="820" MaxHeight="720" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#0D141C" BorderBrush="#455563" BorderThickness="1" CornerRadius="18" Padding="28"><Border.Effect><DropShadowEffect Color="#000000" BlurRadius="42" ShadowDepth="14" Opacity="0.72"/></Border.Effect>
+        <Grid><Grid.RowDefinitions><RowDefinition Height="140"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><Grid Grid.Row="0" ClipToBounds="True"><Border CornerRadius="13" Background="#15212B"><Grid><TextBlock Text="UHM" Foreground="#18DFFF32" FontSize="56" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/><Image Source="{Binding image}" Stretch="UniformToFill" Opacity="0.56"/><Rectangle><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="1,0"><GradientStop Color="#E80D141C" Offset="0"/><GradientStop Color="#7A0D141C" Offset="0.68"/><GradientStop Color="#C00D141C" Offset="1"/></LinearGradientBrush></Rectangle.Fill></Rectangle></Grid></Border><DockPanel Margin="20,16"><Button x:Name="BtnCloseDetails" Style="{StaticResource GhostButton}" Content="×" FontSize="22" DockPanel.Dock="Left" VerticalAlignment="Top"/><StackPanel VerticalAlignment="Bottom"><Border Background="#DFFF32" CornerRadius="6" Padding="8,4" HorizontalAlignment="Right"><TextBlock x:Name="DetailCategory" Foreground="#0A0E10" FontSize="8" FontWeight="Bold"/></Border><TextBlock x:Name="DetailName" FontSize="27" FontWeight="Bold" Margin="0,8,0,0"/><TextBlock x:Name="DetailAuthor" Foreground="#B4BEC7" Margin="0,5,0,0"/></StackPanel></DockPanel></Grid><ScrollViewer Grid.Row="1" Margin="0,22,0,18" VerticalScrollBarVisibility="Auto"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="1.4*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><StackPanel Grid.Column="0"><TextBlock Text="درباره مود" FontWeight="SemiBold"/><TextBlock x:Name="DetailDescription" TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" LineHeight="22" Margin="0,10,0,18"/><TextBlock Text="دستورالعمل و وابستگی‌ها" FontWeight="SemiBold"/><TextBlock x:Name="DetailInstructions" TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" LineHeight="21" Margin="0,10,0,0"/></StackPanel><StackPanel Grid.Column="2"><Border Background="#091016" CornerRadius="11" Padding="14"><StackPanel><DockPanel Margin="0,5"><TextBlock Text="نسخه" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailVersion" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="حجم" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailSize" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="آرشیو" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailArchive" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="CSP" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailCsp" DockPanel.Dock="Left"/></DockPanel><DockPanel Margin="0,5"><TextBlock Text="مسیر نصب" Foreground="{StaticResource MutedBrush}"/><TextBlock x:Name="DetailInstallRoot" DockPanel.Dock="Left" MaxWidth="180"/></DockPanel></StackPanel></Border><TextBlock Text="مقصد نصب" Foreground="{StaticResource MutedBrush}" FontSize="10" Margin="0,16,0,7"/><ComboBox x:Name="DetailTargetPath" DisplayMemberPath="display" SelectedValuePath="id"/><CheckBox x:Name="DetailAutoInstall" Content="پس از دانلود نصب شود" Margin="0,13,0,0"/></StackPanel></Grid></ScrollViewer><Grid Grid.Row="2"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><Button x:Name="BtnOfficialPage" Grid.Column="0" Style="{StaticResource GhostButton}" HorizontalAlignment="Right" Content="بازکردن صفحه رسمی ↗"/><Button x:Name="BtnDetailDownload" Grid.Column="1" Style="{StaticResource BaseButton}" Content="فقط دانلود" Margin="6,0"/><Button x:Name="BtnDetailInstall" Grid.Column="2" Style="{StaticResource PrimaryButton}" Content="دانلود و نصب" Margin="6,0"/></Grid></Grid>
       </Border>
     </Grid>
 
     <!-- Busy overlay -->
     <Grid x:Name="BusyOverlay" Grid.ColumnSpan="2" Background="#B0020406" Visibility="Collapsed" Panel.ZIndex="100" FlowDirection="RightToLeft">
-      <Border Width="390" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#101820" BorderBrush="#34424F" BorderThickness="1" CornerRadius="15" Padding="26"><StackPanel><ProgressBar IsIndeterminate="True" Height="5"/><TextBlock x:Name="BusyTitle" Text="در حال پردازش…" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,19,0,0"/><TextBlock x:Name="BusyMessage" Text="لطفاً پنجره را نبندید." Foreground="{StaticResource MutedBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/></StackPanel></Border>
+      <Border Width="410" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#101820" BorderBrush="#455563" BorderThickness="1" CornerRadius="16" Padding="28"><Border.Effect><DropShadowEffect Color="#000000" BlurRadius="38" ShadowDepth="12" Opacity="0.68"/></Border.Effect><StackPanel><Border Width="48" Height="48" CornerRadius="14" Background="#20DFFF32" HorizontalAlignment="Center"><TextBlock Text="U" Foreground="{StaticResource AccentBrush}" FontSize="23" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ProgressBar IsIndeterminate="True" Height="5" Margin="0,20,0,0"/><TextBlock x:Name="BusyTitle" Text="در حال پردازش…" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,17,0,0"/><TextBlock x:Name="BusyMessage" Text="لطفاً پنجره را نبندید." Foreground="{StaticResource MutedBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/></StackPanel></Border>
     </Grid>
   </Grid>
 </Window>

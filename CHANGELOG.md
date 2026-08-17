@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### طراحی رابط
+
+- بازطراحی کامل Design System رابط WPF با Hero، Sidebar حرفه‌ای، کارت‌های تصویری، Empty State و کنترل‌های Dark اختصاصی
+- اضافه‌شدن Hover/Focus State، Shadow، Progress سفارشی، DataGrid مدرن، Maximize Button و نمایش تصویری جزئیات مود
+- بهینه‌سازی تایپوگرافی فارسی با `fa-IR` و Segoe UI داخلی Windows بدون دانلود Font
+
 ### رفع باگ
 
 - رفع Scope جداشده `GetNewClosure()` در منوی WPF روی Windows PowerShell 5.1

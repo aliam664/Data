@@ -167,7 +167,6 @@ function Update-UhmNativeDashboard {
     if ($script:steamStatus.steamFound) { $healthSteam.Text = 'شناسایی شد'; $healthSteam.Foreground = $script:brushConverter.ConvertFromString('#50E395') } else { $healthSteam.Text = 'پیدا نشد'; $healthSteam.Foreground = $script:brushConverter.ConvertFromString('#FF9F43') }
     $featured = @($mods | Where-Object { $_.featured } | Select-Object -First 6 | ForEach-Object { [pscustomobject]@{ display=('{0}  ·  v{1}  ·  {2}' -f $_.nameFa, $_.version, (Get-UhmNativeCategoryName $_.category)); id=$_.id } })
     $list = Get-UhmNativeControl 'FeaturedList'
-    $list.DisplayMemberPath = 'display'
     $list.ItemsSource = $featured
 }
 
@@ -207,6 +206,9 @@ function Update-UhmNativeCatalogView {
             id = [string]$_.id; nameFa = [string]$_.nameFa; image = [string]$_.image; categoryFa = Get-UhmNativeCategoryName ([string]$_.category)
             authorLine = ('{0}  ·  v{1}' -f [string]$_.author, [string]$_.version); shortDescription = [string]$_.shortDescription
             specLine = ('{0}  ·  {1}' -f [string]$_.sizeText, ([string]$_.archiveType).ToUpperInvariant())
+            verifiedText = if ($_.verified) { '✓ تأییدشده' } else { 'بررسی‌نشده' }
+            cspLine = if ($_.requiresCsp) { ('CSP ' + [string]$_.minCspVersion) } else { 'بدون CSP' }
+            installState = if ($installedIds -contains [string]$_.id) { 'نصب‌شده' } else { 'آماده دریافت' }
         }
     })
     (Get-UhmNativeControl 'CatalogList').ItemsSource = $view
@@ -254,6 +256,8 @@ function Update-UhmNativeQueueView {
             versionLine=('v{0}{1}' -f [string]$item.version, $(if ($item.installAfterDownload) { ' · نصب خودکار' } else { '' })); statusFa=Get-UhmNativeStatusName ([string]$item.status)
             progress=$progress; progressText=('{0}٪' -f (ConvertTo-UhmFaNumber ([Math]::Round($progress, 1)))); transferLine=('{0} / {1}  ·  {2}/s' -f (Format-UhmNativeBytes ([long]$item.bytesReceived)), (Format-UhmNativeBytes ([long]$item.totalBytes)), (Format-UhmNativeBytes ([long]$item.speedBytes)))
             error=[string]$item.error; primaryLabel=$primary[0]; primaryAction=$primary[1]
+            primaryEnabled=($primary[1] -ne 'none')
+            cancelVisibility=$(if ($item.status -in @('queued','starting','connecting','downloading','paused','preparingInstall')) { 'Visible' } else { 'Collapsed' })
         }
     }
     (Get-UhmNativeControl 'QueueList').ItemsSource = $view
@@ -270,6 +274,8 @@ function Update-UhmNativeInstalledView {
         [pscustomobject]@{ nameFa=[string]$_.nameFa; installedVersion=[string]$_.installedVersion; installedDate=$installedDate; fileCount=ConvertTo-UhmFaNumber ([int]$_.fileCount); gamePath=[string]$_.gamePath }
     })
     (Get-UhmNativeControl 'InstalledGrid').ItemsSource = $view
+    $emptyState = Get-UhmNativeControl 'InstalledEmptyState'
+    if ($view.Count -gt 0) { $emptyState.Visibility = [Windows.Visibility]::Collapsed } else { $emptyState.Visibility = [Windows.Visibility]::Visible }
 }
 
 function Update-UhmNativeSettingsView {
@@ -290,6 +296,7 @@ function Show-UhmNativeModDetails {
     $mod = $script:catalogResult.catalog.mods | Where-Object { $_.id -eq $ModId -and $_.enabled } | Select-Object -First 1
     if ($null -eq $mod) { Show-UhmNativeMessage 'مود فعال در کاتالوگ پیدا نشد.' 'خطا' 'Error'; return }
     $script:selectedMod = $mod
+    (Get-UhmNativeControl 'DetailsOverlay').DataContext = $mod
     (Get-UhmNativeControl 'DetailCategory').Text = Get-UhmNativeCategoryName ([string]$mod.category)
     (Get-UhmNativeControl 'DetailName').Text = [string]$mod.nameFa
     (Get-UhmNativeControl 'DetailAuthor').Text = ('{0} · {1}' -f [string]$mod.name, [string]$mod.author)
@@ -581,6 +588,7 @@ $installedFilter = Get-UhmNativeControl 'InstalledFilter'; $installedFilter.Item
 
 # Window and navigation events.
 (Get-UhmNativeControl 'BtnClose').Add_Click({ $window.Close() })
+(Get-UhmNativeControl 'BtnMaximize').Add_Click({ if ($window.WindowState -eq [Windows.WindowState]::Maximized) { $window.WindowState = [Windows.WindowState]::Normal } else { $window.WindowState = [Windows.WindowState]::Maximized } })
 (Get-UhmNativeControl 'BtnMinimize').Add_Click({ $window.WindowState = [Windows.WindowState]::Minimized })
 (Get-UhmNativeControl 'TitleBar').Add_MouseLeftButtonDown({
     param($sender, $eventArgs)
@@ -600,6 +608,7 @@ foreach ($page in @('Dashboard','Catalog','Queue','Installed','Settings')) {
     $navigationButton.Add_Click($navigationHandler)
 }
 (Get-UhmNativeControl 'BtnDashboardCatalog').Add_Click({ Show-UhmNativePage 'Catalog' })
+(Get-UhmNativeControl 'BtnHeroCatalog').Add_Click({ Show-UhmNativePage 'Catalog' })
 (Get-UhmNativeControl 'CatalogSearch').Add_TextChanged({ Update-UhmNativeCatalogView })
 (Get-UhmNativeControl 'CategoryFilter').Add_SelectionChanged({ Update-UhmNativeCatalogView })
 (Get-UhmNativeControl 'SortFilter').Add_SelectionChanged({ Update-UhmNativeCatalogView })

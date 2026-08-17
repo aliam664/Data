@@ -19,7 +19,7 @@ Describe 'Native WPF entry point' {
     It 'contains all required native pages and action controls' {
         [xml]$xaml = Get-Content -Raw $xamlPath
         $source = Get-Content -Raw $xamlPath
-        foreach ($name in @('PageDashboard','PageCatalog','PageQueue','PageInstalled','PageSettings','CatalogList','QueueList','BtnDetailDownload','BtnDetailInstall','SettingsDefaultPath')) {
+        foreach ($name in @('PageDashboard','PageCatalog','PageQueue','PageInstalled','PageSettings','CatalogList','QueueList','BtnHeroCatalog','BtnMaximize','BtnDetailDownload','BtnDetailInstall','SettingsDefaultPath')) {
             $source | Should -Match ('x:Name="' + [regex]::Escape($name) + '"')
         }
     }
