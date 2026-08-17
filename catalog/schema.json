@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/uhm-launcher/catalog/schema.json",
+  "title": "UHM Launcher Catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "catalogVersion", "generatedAt", "mods"],
+  "properties": {
+    "schemaVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "catalogVersion": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "noticeFa": { "type": "string" },
+    "mods": { "type": "array", "items": { "$ref": "#/$defs/mod" } }
+  },
+  "$defs": {
+    "compatibilityValue": { "enum": ["compatible", "incompatible", "required", "recommended", "unknown"] },
+    "mod": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "nameFa", "category", "description", "shortDescription", "author", "version", "releaseDate", "updatedAt", "image", "gallery", "pageUrl", "downloadUrl", "archiveType", "sizeBytes", "sizeText", "sha256", "passwordRequired", "password", "requiresCsp", "minCspVersion", "cspPreviewRequired", "compatibility", "dependencies", "installType", "installRoot", "installInstructions", "featured", "verified", "enabled"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,79}$" },
+        "name": { "type": "string", "minLength": 1 }, "nameFa": { "type": "string", "minLength": 1 },
+        "category": { "enum": ["cars", "tracks", "skins", "graphics", "packs", "apps", "sounds", "weather", "ppfilters", "miscellaneous"] },
+        "description": { "type": "string" }, "shortDescription": { "type": "string" }, "author": { "type": "string" },
+        "version": { "type": "string", "minLength": 1 }, "releaseDate": { "type": "string", "format": "date" }, "updatedAt": { "type": "string", "format": "date" },
+        "image": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "gallery": { "type": "array", "items": { "type": "string", "format": "uri", "pattern": "^https://" } },
+        "pageUrl": { "type": "string", "format": "uri", "pattern": "^https://" }, "downloadUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "archiveType": { "enum": ["zip", "rar", "7z", "tar", "tar.gz"] }, "sizeBytes": { "type": "integer", "minimum": 0 }, "sizeText": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^$|^[A-Fa-f0-9]{64}$" }, "passwordRequired": { "type": "boolean" }, "password": { "type": "string" },
+        "requiresCsp": { "type": "boolean" }, "minCspVersion": { "type": "string" }, "cspPreviewRequired": { "type": "boolean" }, "blockInstall": { "type": "boolean" },
+        "compatibility": { "type": "object", "additionalProperties": false, "required": ["pure", "sol", "contentManager"], "properties": { "pure": { "$ref": "#/$defs/compatibilityValue" }, "sol": { "$ref": "#/$defs/compatibilityValue" }, "contentManager": { "$ref": "#/$defs/compatibilityValue" } } },
+        "dependencies": { "type": "array", "items": { "type": "string" } }, "installType": { "enum": ["content", "graphics", "pack", "root"] },
+        "installRoot": { "type": "string", "pattern": "^(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+$" },
+        "installInstructions": { "type": "array", "items": { "type": "string" } }, "activationSteps": { "type": "array", "items": { "type": "string" } },
+        "featured": { "type": "boolean" }, "verified": { "type": "boolean" }, "enabled": { "type": "boolean" }, "popularity": { "type": "integer", "minimum": 0 }
+      },
+      "allOf": [{ "if": { "properties": { "passwordRequired": { "const": true } }, "required": ["passwordRequired"] }, "then": { "properties": { "password": { "type": "string", "minLength": 1 } } } }]
+    }
+  }
+}

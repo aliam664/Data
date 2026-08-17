@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090d12">
+  <title>UHM Launcher</title>
+  <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="ناوبری اصلی">
+      <a class="brand" href="#dashboard" data-page-link="dashboard" aria-label="داشبورد UHM Launcher">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span><strong>UHM</strong><small>LAUNCHER</small></span>
+      </a>
+      <nav id="main-nav" class="main-nav">
+        <button type="button" class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span><span>داشبورد</span></button>
+        <button type="button" class="nav-item" data-page="catalog"><span class="nav-icon">▦</span><span>کاتالوگ</span></button>
+        <button type="button" class="nav-item" data-page="queue"><span class="nav-icon">⇩</span><span>صف دانلود</span><b id="queue-badge" class="nav-badge hidden">۰</b></button>
+        <button type="button" class="nav-item" data-page="installed"><span class="nav-icon">✓</span><span>مودهای نصب‌شده</span></button>
+        <button type="button" class="nav-item" data-page="settings"><span class="nav-icon">⚙</span><span>تنظیمات</span></button>
+      </nav>
+      <div class="sidebar-status">
+        <div class="status-row"><span id="bridge-dot" class="status-dot online"></span><span>Local Bridge</span><small id="bridge-label">متصل</small></div>
+        <div class="version-line"><span>نسخه آزمایشی</span><b id="side-version">۰.۱.۰</b></div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark mini"><i></i><i></i><i></i></span><strong>UHM</strong></div>
+        <label class="global-search">
+          <span>⌕</span>
+          <input id="global-search" type="search" autocomplete="off" placeholder="جست‌وجوی مود، سازنده یا دسته‌بندی…" aria-label="جست‌وجو">
+          <kbd>Ctrl K</kbd>
+        </label>
+        <div class="top-actions">
+          <button type="button" id="refresh-button" class="icon-button" title="به‌روزرسانی کاتالوگ" aria-label="به‌روزرسانی کاتالوگ">↻</button>
+          <button type="button" id="connection-pill" class="connection-pill"><span></span><b>GitHub</b><small>در حال بررسی</small></button>
+          <button type="button" id="exit-button" class="icon-button danger-ghost" title="خروج امن" aria-label="خروج امن">⏻</button>
+        </div>
+      </header>
+
+      <main id="app-main" class="main-content" tabindex="-1">
+        <div class="launch-loader">
+          <div class="loader-wheel"><span></span></div>
+          <h1>UHM Launcher</h1>
+          <p>در حال برقراری ارتباط امن با هسته محلی…</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="modal-root" class="modal-root" aria-live="polite"></div>
+  <div id="toast-root" class="toast-root" aria-live="assertive"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

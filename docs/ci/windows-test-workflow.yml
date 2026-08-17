@@ -1,0 +1,45 @@
+name: Windows validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON
+        shell: pwsh
+        run: |
+          Get-ChildItem -Recurse -Filter *.json | ForEach-Object {
+            $null = Get-Content -Raw -LiteralPath $_.FullName | ConvertFrom-Json
+            Write-Host "Valid: $($_.FullName)"
+          }
+      - name: Validate catalog against JSON Schema
+        shell: pwsh
+        run: |
+          npm install --no-save --no-package-lock ajv ajv-formats
+          node tests/validate-catalog.js
+      - name: Parse PowerShell source
+        shell: pwsh
+        run: |
+          $failed = $false
+          Get-ChildItem core,wpf,tests -Recurse -Filter *.ps1 | ForEach-Object {
+            $tokens = $null; $errors = $null
+            [void][Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors)
+            if ($errors.Count) { $failed = $true; $errors | ForEach-Object { Write-Error "$($_.Extent.File):$($_.Extent.StartLineNumber) $($_.Message)" } }
+          }
+          if ($failed) { exit 1 }
+      - name: Install Pester 5
+        shell: pwsh
+        run: Install-Module Pester -MinimumVersion 5.5.0 -Scope CurrentUser -Force -SkipPublisherCheck
+      - name: Run unit tests
+        shell: pwsh
+        run: Invoke-Pester -Path tests -Output Detailed -CI
+      - name: Check launcher entry point
+        shell: cmd
+        run: if not exist UHM-Launcher.cmd exit /b 1
