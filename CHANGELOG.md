@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### ابزار مدیریت کاتالوگ
+
+- اضافه‌شدن `catalog/UHM-Catalog-Manager.cmd` با رابط Native WPF برای افزودن مرحله‌ای مود
+- تولید ID، محاسبه Size/SHA-256، تست لینک، انتخاب تصاویر، Clone Template، Preview امن، Backup و ذخیره Atomic
+- تضمین عدم کپی آرشیو مود در Repository و عدم پیاده‌سازی حذف رکورد
+
 ### طراحی رابط
 
 - بازطراحی کامل Design System رابط WPF با Hero، Sidebar حرفه‌ای، کارت‌های تصویری، Empty State و کنترل‌های Dark اختصاصی

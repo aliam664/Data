@@ -4,7 +4,7 @@
 
 Describe 'Windows PowerShell 5.1 source encoding' {
     It 'stores every PowerShell source file as UTF-8 with BOM' {
-        $files = @(Get-ChildItem (Join-Path $repoRoot 'core'),(Join-Path $repoRoot 'wpf'),(Join-Path $repoRoot 'tests') -Recurse -Filter *.ps1 -File)
+        $files = @(Get-ChildItem (Join-Path $repoRoot 'core'),(Join-Path $repoRoot 'wpf'),(Join-Path $repoRoot 'catalog'),(Join-Path $repoRoot 'tests') -Recurse -Filter *.ps1 -File)
         $files.Count | Should -BeGreaterThan 0
         foreach ($file in $files) {
             $bytes = [IO.File]::ReadAllBytes($file.FullName)

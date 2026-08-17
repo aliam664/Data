@@ -28,7 +28,7 @@ jobs:
         shell: pwsh
         run: |
           $failed = $false
-          Get-ChildItem core,wpf,tests -Recurse -Filter *.ps1 | ForEach-Object {
+          Get-ChildItem core,wpf,catalog,tests -Recurse -Filter *.ps1 | ForEach-Object {
             $tokens = $null; $errors = $null
             [void][Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors)
             if ($errors.Count) { $failed = $true; $errors | ForEach-Object { Write-Error "$($_.Extent.File):$($_.Extent.StartLineNumber) $($_.Message)" } }

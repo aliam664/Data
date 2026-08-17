@@ -58,7 +58,7 @@ UHM-Launcher.cmd       CMD entry point (PowerShell -STA)
 wpf/                   رابط اصلی Native: XAML + PowerShell event handlers
 ui/                    رابط HTML قدیمی برای حالت Legacy
 core/                  Downloader، Installer، Queue و سایر ماژول‌های PowerShell
-catalog/               catalog.json، categories.json و JSON Schema
+catalog/               JSON Schema، داده کاتالوگ و Catalog Manager گرافیکی
 images/                تصاویر عمومی کاتالوگ (بدون فایل مود)
 data/                  Cache، تنظیمات، Log و دانلود محلی (در Git ignore)
 docs/                  راهنماهای تفصیلی
@@ -66,6 +66,16 @@ tests/                 تست‌های Pester و برنامه تست Windows
 ```
 
 ## افزودن مود
+
+روش پیشنهادی، اجرای ابزار گرافیکی زیر است:
+
+```text
+catalog\UHM-Catalog-Manager.cmd
+```
+
+Catalog Manager فرم مرحله‌ای، تولید ID، محاسبه Size/SHA-256، تست HTTPS، انتخاب تصاویر، Preview بدون Password، Backup و ذخیره Atomic دارد. فایل مود انتخاب‌شده فقط برای Hash خوانده می‌شود و هرگز داخل Repository کپی نمی‌شود. راهنمای کامل: [مدیریت گرافیکی کاتالوگ](docs/catalog-manager.md).
+
+برای ویرایش دستی:
 
 1. رکورد را مطابق `catalog/schema.json` به `catalog/catalog.json` اضافه کنید.
 2. `id` یکتا و پایدار، دسته معتبر و فقط **یک** `downloadUrl` مستقیم HTTPS تعیین کنید.
@@ -140,6 +150,7 @@ Invoke-Pester -Path .\tests -Output Detailed
 ## اسناد
 
 - [معماری رابط Native WPF](docs/native-ui.md)
+- [مدیریت گرافیکی کاتالوگ](docs/catalog-manager.md)
 - [ممیزی فنی و آمادگی انتشار](docs/project-audit.md)
 - [راهنمای کاتالوگ](docs/catalog-guide.md)
 - [راهنمای نصب و رفتار Installer](docs/installation-guide.md)
