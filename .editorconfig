@@ -1,0 +1,20 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[*.ps1]
+# Windows PowerShell 5.1 treats BOM-less UTF-8 scripts as the active ANSI code page.
+# UHM contains Persian literals, so a UTF-8 BOM is required for correct parsing.
+charset = utf-8-bom
+end_of_line = lf
+
+[*.cmd]
+charset = utf-8
+end_of_line = crlf
+
+[*.{json,xaml,js,css,html,md,yml}]
+charset = utf-8
+end_of_line = lf

@@ -1,0 +1,26 @@
+# Runtime state (keep directory placeholders)
+data/cache/*
+!data/cache/.gitkeep
+data/downloads/*
+!data/downloads/.gitkeep
+data/logs/*
+!data/logs/.gitkeep
+data/settings/*
+!data/settings/.gitkeep
+
+# Download and extraction artifacts
+*.part
+*.tmp
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Test output / development-only packages
+TestResults/
+node_modules/
+package-lock.json

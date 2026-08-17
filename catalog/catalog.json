@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "1.0.0-demo",
+  "generatedAt": "2026-08-16T00:00:00Z",
+  "noticeFa": "این کاتالوگ فقط داده نمایشی دارد. تمام لینک‌های example.com جعلی و غیرقابل دانلود هستند.",
+  "mods": [
+    {
+      "id": "demo-gt3-car", "name": "Demo GT3 Concept", "nameFa": "خودروی نمایشی GT3", "category": "cars",
+      "description": "نمونه داده برای نمایش صفحه جزئیات خودرو. این مود واقعی نیست و فقط ساختار کاتالوگ را نشان می‌دهد.", "shortDescription": "خودروی نمونه برای آزمایش رابط کاربری", "author": "Demo Author", "version": "1.2.0",
+      "releaseDate": "2026-08-17", "updatedAt": "2026-08-17", "image": "https://example.com/images/demo-gt3.jpg",
+      "gallery": ["https://example.com/images/demo-gt3-1.jpg", "https://example.com/images/demo-gt3-2.jpg"],
+      "pageUrl": "https://example.com/mods/demo-gt3", "downloadUrl": "https://example.com/downloads/demo-gt3.zip", "archiveType": "zip",
+      "sizeBytes": 100000000, "sizeText": "95 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": true, "minCspVersion": "0.2.0", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "compatible", "sol": "unknown", "contentManager": "recommended" }, "dependencies": [],
+      "installType": "content", "installRoot": "content/cars", "installInstructions": ["این مود به CSP نیاز دارد.", "پس از نصب، آن را به‌صورت دستی در Content Manager بررسی کنید."],
+      "activationSteps": [], "featured": true, "verified": true, "enabled": true, "popularity": 98
+    },
+    {
+      "id": "demo-mountain-track", "name": "Demo Mountain Circuit", "nameFa": "پیست کوهستانی نمایشی", "category": "tracks",
+      "description": "پیست نمونه برای بررسی نصب ساختار content/tracks و گالری تصاویر.", "shortDescription": "پیست کوهستانی نمونه", "author": "Demo Studio", "version": "0.9.1",
+      "releaseDate": "2026-08-15", "updatedAt": "2026-08-16", "image": "https://example.com/images/demo-track.jpg", "gallery": ["https://example.com/images/demo-track-1.jpg"],
+      "pageUrl": "https://example.com/mods/demo-track", "downloadUrl": "https://example.com/downloads/demo-track.7z", "archiveType": "7z",
+      "sizeBytes": 524288000, "sizeText": "500 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": true, "minCspVersion": "0.2.3", "cspPreviewRequired": true, "blockInstall": false,
+      "compatibility": { "pure": "compatible", "sol": "incompatible", "contentManager": "required" }, "dependencies": ["CSP Preview"],
+      "installType": "content", "installRoot": "content/tracks", "installInstructions": ["نسخه Preview از CSP را بررسی کنید."], "activationSteps": [],
+      "featured": true, "verified": true, "enabled": true, "popularity": 91
+    },
+    {
+      "id": "demo-racing-skin", "name": "Demo Racing Livery", "nameFa": "اسکین مسابقه‌ای نمایشی", "category": "skins",
+      "description": "اسکین نمونه؛ installRoot در کاتالوگ واقعی باید به پوشه خودروی مقصد اشاره کند.", "shortDescription": "اسکین نمونه خودرو", "author": "Demo Painter", "version": "1.0.0",
+      "releaseDate": "2026-08-12", "updatedAt": "2026-08-12", "image": "https://example.com/images/demo-skin.jpg", "gallery": [],
+      "pageUrl": "https://example.com/mods/demo-skin", "downloadUrl": "https://example.com/downloads/demo-skin.rar", "archiveType": "rar",
+      "sizeBytes": 26214400, "sizeText": "25 MB", "sha256": "", "passwordRequired": true, "password": "demo-password",
+      "requiresCsp": false, "minCspVersion": "", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "unknown", "sol": "unknown", "contentManager": "recommended" }, "dependencies": ["Demo GT3 Concept"],
+      "installType": "content", "installRoot": "content/cars/demo_gt3/skins", "installInstructions": ["رمز نمونه عمومی است و محرمانه محسوب نمی‌شود."], "activationSteps": [],
+      "featured": false, "verified": true, "enabled": true, "popularity": 72
+    },
+    {
+      "id": "demo-visual-pack", "name": "Demo Visual Suite", "nameFa": "پک گرافیکی نمایشی", "category": "graphics",
+      "description": "پک نمونه شامل ساختارهای Extension Config، Weather FX، VAO و PP Filter. نصب در ریشه فقط پس از ساخت Plan امن انجام می‌شود.", "shortDescription": "پک گرافیکی و آب‌وهوا", "author": "Demo Visuals", "version": "2.1.0",
+      "releaseDate": "2026-08-10", "updatedAt": "2026-08-16", "image": "https://example.com/images/demo-visual.jpg", "gallery": ["https://example.com/images/demo-visual-1.jpg"],
+      "pageUrl": "https://example.com/mods/demo-visual", "downloadUrl": "https://example.com/downloads/demo-visual.tar.gz", "archiveType": "tar.gz",
+      "sizeBytes": 314572800, "sizeText": "300 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": true, "minCspVersion": "0.2.4", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "required", "sol": "incompatible", "contentManager": "required" }, "dependencies": ["Pure 2.x", "Content Manager"],
+      "installType": "graphics", "installRoot": "extension", "installInstructions": ["فایل‌های در معرض تغییر را پیش از تأیید بررسی کنید.", "بازی یا Content Manager خودکار اجرا نمی‌شود."],
+      "activationSteps": ["Weather FX را در Content Manager به‌صورت دستی فعال کنید.", "PP Filter را داخل بازی انتخاب کنید."],
+      "featured": true, "verified": true, "enabled": true, "popularity": 95
+    },
+    {
+      "id": "demo-telemetry-app", "name": "Demo Telemetry App", "nameFa": "اپ تله‌متری نمایشی", "category": "apps",
+      "description": "اپلیکیشن Lua نمونه برای نمایش دسته اپ‌ها.", "shortDescription": "اپ تله‌متری Lua", "author": "Demo Labs", "version": "1.4.2",
+      "releaseDate": "2026-08-08", "updatedAt": "2026-08-14", "image": "https://example.com/images/demo-app.jpg", "gallery": [],
+      "pageUrl": "https://example.com/mods/demo-app", "downloadUrl": "https://example.com/downloads/demo-app.zip", "archiveType": "zip",
+      "sizeBytes": 8388608, "sizeText": "8 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": true, "minCspVersion": "0.1.80", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "compatible", "sol": "compatible", "contentManager": "recommended" }, "dependencies": [],
+      "installType": "content", "installRoot": "apps/lua", "installInstructions": ["فعال‌سازی اپ باید دستی انجام شود."], "activationSteps": ["اپ را در Content Manager فعال کنید."],
+      "featured": false, "verified": true, "enabled": true, "popularity": 64
+    },
+    {
+      "id": "demo-sound-pack", "name": "Demo V8 Sound", "nameFa": "پک صدای V8 نمایشی", "category": "sounds",
+      "description": "پک صدای نمونه برای تست فیلتر دسته‌بندی و صف.", "shortDescription": "صدای موتور نمونه", "author": "Demo Audio", "version": "1.0.3",
+      "releaseDate": "2026-08-05", "updatedAt": "2026-08-11", "image": "https://example.com/images/demo-sound.jpg", "gallery": [],
+      "pageUrl": "https://example.com/mods/demo-sound", "downloadUrl": "https://example.com/downloads/demo-sound.zip", "archiveType": "zip",
+      "sizeBytes": 62914560, "sizeText": "60 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": false, "minCspVersion": "", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "unknown", "sol": "unknown", "contentManager": "recommended" }, "dependencies": [],
+      "installType": "content", "installRoot": "content/cars/demo_gt3/sfx", "installInstructions": [], "activationSteps": [],
+      "featured": false, "verified": false, "enabled": true, "popularity": 57
+    },
+    {
+      "id": "demo-weather", "name": "Demo Dynamic Weather", "nameFa": "آب‌وهوای پویای نمایشی", "category": "weather",
+      "description": "پروفایل آب‌وهوای نمونه.", "shortDescription": "پروفایل آب‌وهوای نمونه", "author": "Demo Sky", "version": "0.8.0",
+      "releaseDate": "2026-08-02", "updatedAt": "2026-08-09", "image": "https://example.com/images/demo-weather.jpg", "gallery": [],
+      "pageUrl": "https://example.com/mods/demo-weather", "downloadUrl": "https://example.com/downloads/demo-weather.zip", "archiveType": "zip",
+      "sizeBytes": 41943040, "sizeText": "40 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": true, "minCspVersion": "0.2.2", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "compatible", "sol": "incompatible", "contentManager": "required" }, "dependencies": ["Pure"],
+      "installType": "graphics", "installRoot": "extension/weather", "installInstructions": [], "activationSteps": ["پروفایل را دستی انتخاب کنید."],
+      "featured": false, "verified": true, "enabled": true, "popularity": 79
+    },
+    {
+      "id": "demo-ppfilter", "name": "Demo Cinematic PPFilter", "nameFa": "فیلتر سینمایی نمایشی", "category": "ppfilters",
+      "description": "فیلتر گرافیکی نمونه برای Pure و CSP.", "shortDescription": "PP Filter سینمایی نمونه", "author": "Demo Color", "version": "3.0.0",
+      "releaseDate": "2026-07-29", "updatedAt": "2026-08-07", "image": "https://example.com/images/demo-filter.jpg", "gallery": [],
+      "pageUrl": "https://example.com/mods/demo-filter", "downloadUrl": "https://example.com/downloads/demo-filter.7z", "archiveType": "7z",
+      "sizeBytes": 12582912, "sizeText": "12 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": true, "minCspVersion": "0.2.0", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "required", "sol": "unknown", "contentManager": "recommended" }, "dependencies": ["Pure"],
+      "installType": "graphics", "installRoot": "system/cfg/ppfilters", "installInstructions": [], "activationSteps": ["فیلتر را در Video Settings انتخاب کنید."],
+      "featured": false, "verified": true, "enabled": true, "popularity": 83
+    },
+    {
+      "id": "demo-complete-pack", "name": "Demo Starter Bundle", "nameFa": "پک کامل نمایشی", "category": "packs",
+      "description": "پک نمونه چندبخشی؛ هر فایل قبل از نصب به مقصد امن نگاشت می‌شود.", "shortDescription": "پک شروع نمونه", "author": "Demo Community", "version": "1.0.0",
+      "releaseDate": "2026-07-25", "updatedAt": "2026-08-04", "image": "https://example.com/images/demo-pack.jpg", "gallery": [],
+      "pageUrl": "https://example.com/mods/demo-pack", "downloadUrl": "https://example.com/downloads/demo-pack.zip", "archiveType": "zip",
+      "sizeBytes": 734003200, "sizeText": "700 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": true, "minCspVersion": "0.2.1", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "compatible", "sol": "compatible", "contentManager": "recommended" }, "dependencies": [],
+      "installType": "pack", "installRoot": "content", "installInstructions": ["فهرست جایگزینی را با دقت بررسی کنید."], "activationSteps": [],
+      "featured": true, "verified": true, "enabled": true, "popularity": 88
+    },
+    {
+      "id": "demo-misc", "name": "Demo UI Preset", "nameFa": "پریست متفرقه نمایشی", "category": "miscellaneous",
+      "description": "نمونه دسته متفرقه که به‌طور پیش‌فرض غیرفعال است تا رفتار enabled نمایش داده شود.", "shortDescription": "پریست نمونه", "author": "Demo Author", "version": "0.1.0",
+      "releaseDate": "2026-07-20", "updatedAt": "2026-07-20", "image": "https://example.com/images/demo-misc.jpg", "gallery": [],
+      "pageUrl": "https://example.com/mods/demo-misc", "downloadUrl": "https://example.com/downloads/demo-misc.zip", "archiveType": "zip",
+      "sizeBytes": 1048576, "sizeText": "1 MB", "sha256": "", "passwordRequired": false, "password": "",
+      "requiresCsp": false, "minCspVersion": "", "cspPreviewRequired": false, "blockInstall": false,
+      "compatibility": { "pure": "unknown", "sol": "unknown", "contentManager": "unknown" }, "dependencies": [],
+      "installType": "content", "installRoot": "cfg", "installInstructions": [], "activationSteps": [],
+      "featured": false, "verified": false, "enabled": false, "popularity": 1
+    }
+  ]
+}

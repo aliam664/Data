@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    { "id": "cars", "nameFa": "خودرو", "icon": "car" },
+    { "id": "tracks", "nameFa": "پیست", "icon": "track" },
+    { "id": "skins", "nameFa": "اسکین", "icon": "palette" },
+    { "id": "graphics", "nameFa": "گرافیک", "icon": "sparkles" },
+    { "id": "packs", "nameFa": "پک کامل", "icon": "package" },
+    { "id": "apps", "nameFa": "اپلیکیشن", "icon": "grid" },
+    { "id": "sounds", "nameFa": "صدا", "icon": "volume" },
+    { "id": "weather", "nameFa": "آب‌وهوا", "icon": "cloud" },
+    { "id": "ppfilters", "nameFa": "فیلتر گرافیکی", "icon": "filter" },
+    { "id": "miscellaneous", "nameFa": "متفرقه", "icon": "more" }
+  ]
+}
