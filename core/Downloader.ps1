@@ -1,4 +1,4 @@
-Set-StrictMode -Version 2.0
+﻿Set-StrictMode -Version 2.0
 
 function Update-UhmDownloadProgress {
     param([string]$StatePath, [hashtable]$Changes)

@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $repoRoot = Split-Path -Parent $PSScriptRoot
     $xamlPath = Join-Path $repoRoot 'wpf\MainWindow.xaml'
     $scriptPath = Join-Path $repoRoot 'wpf\UHM-Wpf.ps1'

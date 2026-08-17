@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param([Parameter(Mandatory = $true)][string]$ProjectRoot)
 
 Set-StrictMode -Version 2.0

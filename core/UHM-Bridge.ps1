@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)][ValidateRange(1024,65535)][int]$Port,
     [Parameter(Mandatory = $true)][string]$Token,

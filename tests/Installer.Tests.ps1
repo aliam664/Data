@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $repoRoot = Split-Path -Parent $PSScriptRoot
     $script:UhmProjectRoot = Join-Path $TestDrive 'uhm-runtime'
     New-Item -ItemType Directory -Path (Join-Path $script:UhmProjectRoot 'data\settings'),(Join-Path $script:UhmProjectRoot 'data\cache'),(Join-Path $script:UhmProjectRoot 'data\logs') -Force | Out-Null

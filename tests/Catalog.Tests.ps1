@@ -1,4 +1,4 @@
-BeforeAll {
+﻿BeforeAll {
     $script:UhmProjectRoot = Split-Path -Parent $PSScriptRoot
     . (Join-Path $script:UhmProjectRoot 'core\Logger.ps1')
     . (Join-Path $script:UhmProjectRoot 'core\Security.ps1')

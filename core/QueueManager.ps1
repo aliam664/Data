@@ -1,4 +1,4 @@
-Set-StrictMode -Version 2.0
+﻿Set-StrictMode -Version 2.0
 
 function Get-UhmQueueRoot {
     $path = Join-Path $script:UhmProjectRoot 'data\settings\queue'

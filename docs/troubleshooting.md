@@ -14,6 +14,10 @@
 - خطای XAML یا STA در پنجره CMD و `data/logs` ثبت می‌شود.
 - `wpf/MainWindow.xaml` را مستقیم باز نکنید؛ رفتار کلیک‌ها در `UHM-Wpf.ps1` متصل می‌شود.
 
+### متن فارسی به شکل `ط...` دیده می‌شود یا ParserError می‌گیرید
+
+Windows PowerShell 5.1 فایل UTF-8 بدون BOM را با Code Page قدیمی می‌خواند. تمام فایل‌های `core/`، `wpf/` و `tests/` باید با سه بایت `EF BB BF` شروع شوند. نسخه مخزن این BOM را دارد و `.editorconfig` نیز `utf-8-bom` را اجباری می‌کند. اگر ابزار ZIP، Editor یا Script هنگام کپی BOM را حذف کرده است، Release را دوباره از GitHub دریافت کنید یا فایل‌ها را با **UTF-8 with BOM** ذخیره کنید.
+
 ## حالت Legacy می‌گوید Token وجود ندارد
 
 این پیام فقط در رابط HTML قدیمی دیده می‌شود. `ui/index.html` مستقیم باز شده است؛ حالت Legacy باید از `UHM-Core.ps1 -Action launch-web` اجرا شود.

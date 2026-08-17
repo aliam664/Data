@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [ValidateSet('launch','launch-web','download-worker')][string]$Action = 'launch',
     [string]$JobPath

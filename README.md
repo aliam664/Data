@@ -126,6 +126,7 @@ UHM فقط دانلود مستقیم HTTPS را می‌پذیرد و Redirect ن
 ## توسعه‌دهنده
 
 - رابط اصلی از Assemblyهای داخلی WPF/.NET Framework ویندوز استفاده می‌کند و وابستگی UI جداگانه‌ای نصب نمی‌شود.
+- همه فایل‌های `.ps1` عمداً با **UTF-8 BOM** ذخیره می‌شوند تا Windows PowerShell 5.1 متن فارسی را به‌درستی Parse کند؛ تنظیم آن در `.editorconfig` ثبت شده است.
 - PowerShell با `Set-StrictMode` نوشته شده و از `Invoke-Expression` استفاده نمی‌کند.
 - حالت Native مستقیماً با هسته کار می‌کند؛ محدودیت Body یک MiB فقط مربوط به Bridge قدیمی است.
 - تست‌ها با Pester 5 روی Windows اجرا می‌شوند:
