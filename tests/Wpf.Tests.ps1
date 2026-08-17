@@ -46,4 +46,17 @@ Describe 'Native WPF entry point' {
         $source | Should -Match 'Invoke-UhmNativeInstallPreview'
         $source | Should -Not -Match '(?im)^\s*Invoke-Expression\b'
     }
+
+    It 'keeps navigation handlers in the WPF script scope on Windows PowerShell 5.1' {
+        $source = Get-Content -Raw $scriptPath
+        $source | Should -Not -Match '\.GetNewClosure\(\)'
+        $source | Should -Match '\$navigationButton\.Tag\s*=\s*\$page'
+        $source | Should -Match '\$navigationButton\.Add_Click\(\$navigationHandler\)'
+    }
+
+    It 'handles unexpected dispatcher event errors instead of closing ShowDialog' {
+        $source = Get-Content -Raw $scriptPath
+        $source | Should -Match 'Dispatcher\.add_UnhandledException'
+        $source | Should -Match '\$eventArgs\.Handled\s*=\s*\$true'
+    }
 }

@@ -18,6 +18,10 @@
 
 Windows PowerShell 5.1 فایل UTF-8 بدون BOM را با Code Page قدیمی می‌خواند. تمام فایل‌های `core/`، `wpf/` و `tests/` باید با سه بایت `EF BB BF` شروع شوند. نسخه مخزن این BOM را دارد و `.editorconfig` نیز `utf-8-bom` را اجباری می‌کند. اگر ابزار ZIP، Editor یا Script هنگام کپی BOM را حذف کرده است، Release را دوباره از GitHub دریافت کنید یا فایل‌ها را با **UTF-8 with BOM** ذخیره کنید.
 
+### پس از کلیک منو، `Show-UhmNativePage is not recognized` نمایش داده می‌شود
+
+این خطا در Buildهای قدیمی ناشی از `GetNewClosure()` در Windows PowerShell 5.1 بود؛ Closure یک Dynamic Module جدا می‌ساخت و تابع‌های Script Scope را پس از شروع `ShowDialog` نمی‌دید. نسخه جدید نام صفحه را در `Button.Tag` نگه می‌دارد و یک Handler مشترک در همان Scope دارد. Dispatcher نیز خطاهای پیش‌بینی‌نشده UI را Log و Handle می‌کند تا یک رویداد، کل پنجره را نبندد.
+
 ## حالت Legacy می‌گوید Token وجود ندارد
 
 این پیام فقط در رابط HTML قدیمی دیده می‌شود. `ui/index.html` مستقیم باز شده است؛ حالت Legacy باید از `UHM-Core.ps1 -Action launch-web` اجرا شود.

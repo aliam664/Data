@@ -539,6 +539,22 @@ function Get-UhmNativeButtonAncestor {
     return $null
 }
 
+# Keep an unexpected UI event error from tearing down ShowDialog and the whole launcher.
+# The error is logged and surfaced in Persian; operational workers remain isolated.
+$script:handlingDispatcherError = $false
+$window.Dispatcher.add_UnhandledException({
+    param($sender, $eventArgs)
+    try {
+        Write-UhmLog -Level ERROR -Event 'native.ui.unhandled' -Data @{ error=$eventArgs.Exception.Message; type=$eventArgs.Exception.GetType().FullName }
+        $eventArgs.Handled = $true
+        if (-not $script:handlingDispatcherError) {
+            $script:handlingDispatcherError = $true
+            try { Show-UhmNativeMessage ('خطای رابط کنترل شد و برنامه باز می‌ماند:' + [Environment]::NewLine + $eventArgs.Exception.Message) 'خطای رابط' 'Error' }
+            finally { $script:handlingDispatcherError = $false }
+        }
+    } catch { $eventArgs.Handled = $true }
+})
+
 # Initial persisted state. Interrupted workers are resumable, never falsely displayed as active.
 foreach ($item in @(Get-UhmQueueItems | Where-Object { $_.status -in @('starting','connecting','downloading','preparingInstall','canceling') })) {
     Set-UhmQueueState -Id ([string]$item.id) -Changes @{status='failed';error='اجرای قبلی متوقف شد؛ فایل ناقص برای Resume نگه‌داری شده است.'}|Out-Null
@@ -572,7 +588,17 @@ $installedFilter = Get-UhmNativeControl 'InstalledFilter'; $installedFilter.Item
         if ($window.WindowState -eq [Windows.WindowState]::Maximized) { $window.WindowState = [Windows.WindowState]::Normal } else { $window.WindowState = [Windows.WindowState]::Maximized }
     } else { try { $window.DragMove() } catch {} }
 })
-foreach ($page in @('Dashboard','Catalog','Queue','Installed','Settings')) { $pageCopy=$page; (Get-UhmNativeControl ('Nav'+$page)).Add_Click({ Show-UhmNativePage $pageCopy }.GetNewClosure()) }
+# Do not use GetNewClosure here: it creates a dynamic module that cannot resolve
+# script-scope UI functions in Windows PowerShell 5.1 after ShowDialog starts.
+$navigationHandler = {
+    param($sender, $eventArgs)
+    Show-UhmNativePage ([string]$sender.Tag)
+}
+foreach ($page in @('Dashboard','Catalog','Queue','Installed','Settings')) {
+    $navigationButton = Get-UhmNativeControl ('Nav' + $page)
+    $navigationButton.Tag = $page
+    $navigationButton.Add_Click($navigationHandler)
+}
 (Get-UhmNativeControl 'BtnDashboardCatalog').Add_Click({ Show-UhmNativePage 'Catalog' })
 (Get-UhmNativeControl 'CatalogSearch').Add_TextChanged({ Update-UhmNativeCatalogView })
 (Get-UhmNativeControl 'CategoryFilter').Add_SelectionChanged({ Update-UhmNativeCatalogView })

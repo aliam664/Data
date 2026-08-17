@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### رفع باگ
+
+- رفع Scope جداشده `GetNewClosure()` در منوی WPF روی Windows PowerShell 5.1
+- اضافه‌شدن Handler سراسری Dispatcher برای جلوگیری از بسته‌شدن کل پنجره در خطای یک رویداد UI
+- رفع Materialization فهرست‌های Generic و Encoding فارسی در Windows PowerShell 5.1
+
+### برنامه بعدی
+
 - اجرای تست یکپارچه واقعی روی Windows 10 و Windows 11
 - کاتالوگ تولیدی با لینک‌های رسمی و مجاز
 - امکان حذف امن مود پس از طراحی Manifest/Conflict کامل (در نسخه فعلی وجود ندارد)

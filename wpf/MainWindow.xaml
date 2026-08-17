@@ -4,6 +4,7 @@
         Title="UHM Launcher"
         Width="1360" Height="840" MinWidth="1060" MinHeight="680"
         WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="CanResize"
+        Language="fa-IR" UseLayoutRounding="True" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display"
         Background="#070A0E" Foreground="#F3F6F8" FontFamily="Segoe UI">
   <Window.Resources>
     <SolidColorBrush x:Key="BgBrush" Color="#070A0E"/>
