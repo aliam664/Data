@@ -66,7 +66,9 @@ function Get-UhmSettings {
             if (-not $exists -and -not $ignored) { $validPaths.Add($detected) }
         }
     }
-    $settings.gamePaths = @($validPaths)
+    # Windows PowerShell 5.1 can throw "Argument types do not match" when @()
+    # materializes a generic List[object]. ToArray() avoids that DLR bug.
+    $settings.gamePaths = $validPaths.ToArray()
     if ([string]::IsNullOrWhiteSpace([string]$settings.defaultGamePathId) -or
         @($validPaths | Where-Object { $_.id -eq $settings.defaultGamePathId -and $_.isValid }).Count -eq 0) {
         $first = $validPaths | Where-Object { $_.isValid } | Select-Object -First 1

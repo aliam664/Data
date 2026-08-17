@@ -87,7 +87,7 @@ function New-UhmInstallationPreview {
             id = $previewId; queueId = $QueueId; modId = [string]$Mod.id; modName = [string]$Mod.nameFa; version = [string]$Mod.version
             gamePath = [IO.Path]::GetFullPath($GamePath); archivePath = [IO.Path]::GetFullPath($ArchivePath); stagingRoot = $stagingRoot
             createdAt = [DateTime]::UtcNow.ToString('o'); csp = $csp; fileCount = $plan.Count; totalBytes = [long](($plan | Measure-Object -Property size -Sum).Sum)
-            overwrites = @($overwrites); executableFiles = @($executables); plan = @($plan)
+            overwrites = $overwrites.ToArray(); executableFiles = $executables.ToArray(); plan = $plan.ToArray()
         }
         Write-UhmJsonAtomic -Path (Join-Path $stagingRoot 'uhm-preview.json') -Value $preview
         Write-UhmLog -Event 'install.preview' -Data @{ mod = $Mod.id; destination = $GamePath; overwriteCount = $overwrites.Count; fileCount = $plan.Count; executableCount = $executables.Count; cspCompatible = $csp.compatible }
