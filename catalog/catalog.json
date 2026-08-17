@@ -1,0 +1,24 @@
+{
+  "catalogVersion": 1,
+  "updatedAt": "2026-08-17",
+  "repository": "https://github.com/your-account/uhm-launcher",
+  "mods": [
+    {
+      "id": "example-car",
+      "name": "نمونه خودرو",
+      "category": "cars",
+      "description": "این رکورد نمونه را با مود واقعی جایگزین کنید.",
+      "author": "سازنده مود",
+      "version": "1.0",
+      "image": "https://placehold.co/960x540/182338/7de2d1?text=UHM+Launcher",
+      "pageUrl": "https://example.com/mod-page",
+      "downloadUrl": "https://example.com/mod.zip",
+      "archive": "zip",
+      "password": "",
+      "requiresCsp": "بدون نیاز",
+      "installRoot": "content/cars",
+      "size": "نامشخص",
+      "featured": true
+    }
+  ]
+}
